@@ -13,13 +13,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class UIMedicamentoFX extends Application {
     private final MedicamentoController controller = new MedicamentoController(new MedicamentoImplMariaDB());
 
     private BorderPane painelPrincipal = new BorderPane();
-    private TableView<Medicamento> medicamentos = new TableView<>();
+    private TableView<Medicamento> tblMedicamentos = new TableView<>();
 
     private Label lblNome = new Label("Nome:");
     private TextField txtNome = new TextField();
@@ -42,6 +43,23 @@ public class UIMedicamentoFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Scene scn = new Scene(this.painelPrincipal, 400, 300);
+
+        GridPane painelTopo = new GridPane();
+        painelTopo.add(this.lblNome, 0, 0);
+        painelTopo.add(this.txtNome, 1, 0);
+        painelTopo.add(this.lblCodBarras, 0, 1);
+        painelTopo.add(this.txtCodBarras, 1, 1);
+        painelTopo.add(this.lblDataEntrega, 0, 2);
+        painelTopo.add(this.dtDataEntrega, 1, 2);
+        painelTopo.add(this.lblDataValidade, 0, 3);
+        painelTopo.add(this.dtDataValidade, 1, 3);
+        painelTopo.add(this.lblFarmPopular, 0, 4);
+        painelTopo.add(this.chkFarmPopular, 1, 4);
+        painelTopo.add(this.lblValor, 0, 5);
+        painelTopo.add(this.txtValor, 1, 5);
+
+        this.painelPrincipal.setTop(painelTopo);
+        this.painelPrincipal.setCenter(this.tblMedicamentos);
 
         stage.setScene(scn);
         stage.show();
