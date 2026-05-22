@@ -78,6 +78,29 @@ public class MedicamentoController {
         load();
     }
 
+    // DELETAR NO FUTURO, SOMENTE PARA TESTES PELO TERMINAL
+    public void save(Medicamento m) {
+
+        if (this.lista.contains(m)) {
+            System.out.println("Atualizando Medicamento...\n" + m.toString());
+            this.dao.update(m.getId(), m);
+        } else {
+            System.out.println("Salvando Novo Medicamento...\n" + m.toString());
+            this.dao.save(m);
+            this.lista.add(m);
+        }
+        
+    }
+    // ####################################################
+
+    // DELETAR NO FUTURO, SOMENTE PARA TESTES PELO TERMINAL
+    public void delete(Medicamento m) {
+        System.out.println("Deletando medicamento...\n" + m.toString());
+        this.dao.delete(m);
+        this.lista.remove(m);
+    }
+    // ####################################################
+
     public void delete(int indice) {
         Medicamento m = this.lista.get(indice);
         System.out.println("Deletando medicamento...\n" + m.toString());
