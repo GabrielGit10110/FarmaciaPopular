@@ -43,3 +43,7 @@ application {
     mainClass = "edu.curso.App"
     // mainClass = "edu.curso.TestePropriedades"
 }
+
+tasks.withType<JavaExec> {
+    standardInput = System.`in`
+}
