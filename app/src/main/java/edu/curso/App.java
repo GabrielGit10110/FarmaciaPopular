@@ -3,11 +3,11 @@
  */
 package edu.curso;
 
-import edu.curso.view.CLIMedicamentoUI;
+import edu.curso.view.UIMedicamentoFX;
+import javafx.application.Application;
 
 public class App {
     public static void main(String[] args) {
-        CLIMedicamentoUI test = new CLIMedicamentoUI();
-        test.iniciar();
+        Application.launch(UIMedicamentoFX.class, args);
     }
 }
