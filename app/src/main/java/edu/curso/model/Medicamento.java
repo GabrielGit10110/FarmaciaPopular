@@ -71,7 +71,7 @@ public class Medicamento {
             msg.append("Nao").append("\n");
         }
 
-        msg.append("Valor do Medicamento: ").append(m.getValor());
+        msg.append("Valor do Medicamento: ").append(this.getValor());
         
         return msg.toString();
     }
