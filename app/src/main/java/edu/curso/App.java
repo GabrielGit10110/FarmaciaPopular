@@ -3,12 +3,11 @@
  */
 package edu.curso;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import edu.curso.view.CLIMedicamentoUI;
 
+public class App {
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        CLIMedicamentoUI test = new CLIMedicamentoUI();
+        test.iniciar();
     }
 }
