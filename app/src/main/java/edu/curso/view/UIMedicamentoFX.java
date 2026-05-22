@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class UIMedicamentoFX extends Application {
@@ -42,6 +43,9 @@ public class UIMedicamentoFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Scene scn = new Scene(this.painelPrincipal, 400, 300);
+
+        GridPane painelTopo = new GridPane();
+        painelTopo.add()
 
         stage.setScene(scn);
         stage.show();
