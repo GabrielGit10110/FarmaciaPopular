@@ -56,6 +56,8 @@ public class Medicamento {
 
     @Override
     public String toString() {
+        StringBuilder msg = new StringBuilder();
+
         msg.append("ID do Medicamento: ").append(this.getId()).append("\n");
         msg.append("Nome do Medicamento: ").append(this.getNome()).append("\n");
         msg.append("Codigo de Barras do Medicamento: ").append(this.getCodBarras()).append("\n");

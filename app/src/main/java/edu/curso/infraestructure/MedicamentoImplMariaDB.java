@@ -1,5 +1,6 @@
 package edu.curso.infraestructure;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import edu.curso.control.MedicamentoDAO;
@@ -12,9 +13,9 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
         System.out.println("Buscando todos os itens no banco de dados...");
 
         return List.of(
-            new Medicamento(1, "Dipirona", "123", LocalDate.now(), LocalDate.now().plusMonth(6), true, 10.0),
-            new Medicamento(2, "Paracetamol", "132", LocalDate.now(), LocalDate.now().plusMonth(8), false, 15.0),
-            new Medicamento(3, "Loratadina", "231", LocalDate.now(), LocalDate.now().plusMonth(12), true, 10.0)
+            new Medicamento(1, "Dipirona", "123", LocalDate.now(), LocalDate.now().plusMonths(6), true, 10.0),
+            new Medicamento(2, "Paracetamol", "132", LocalDate.now(), LocalDate.now().plusMonths(8), false, 15.0),
+            new Medicamento(3, "Loratadina", "231", LocalDate.now(), LocalDate.now().plusMonths(12), true, 10.0)
         );
     }
 

@@ -2,7 +2,6 @@ package edu.curso.control;
 
 import java.util.List;
 
-import edu.curso.infraestructure.MedicamentoImplMariaDB;
 import edu.curso.model.Medicamento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,12 +17,12 @@ public class MedicamentoController {
     private LongProperty id = new SimpleLongProperty(0);
     private StringProperty nome = new SimpleStringProperty("");
     private StringProperty codBarras = new SimpleStringProperty("");
-    private ObjectProperty<LocalDate> dataEntrega = new SimpleObjectProperty(LocalDate.now());
-    private ObjectProperty<LocalDate> dataVencimento = new SimpleObjectProperty(LocalDate.now());
+    private ObjectProperty<LocalDate> dataEntrega = new SimpleObjectProperty<>(LocalDate.now());
+    private ObjectProperty<LocalDate> dataVencimento = new SimpleObjectProperty<>(LocalDate.now());
     private BooleanProperty farmPopular = new SimpleBooleanProperty(false);
     private DoubleProperty valor = new SimpleDoubleProperty(0.0);
 
-    public MedicamentoController(MedicamentoDao dao) {
+    public MedicamentoController(MedicamentoDAO dao) {
         this.dao = dao;
         load();
     }
