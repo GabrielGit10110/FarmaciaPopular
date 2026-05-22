@@ -53,4 +53,24 @@ public class Medicamento {
 
     public double getValor() { return valor; }
     public void setValor(double valor) { this.valor = valor; }
+
+    @Override
+    public String toString() {
+        msg.append("ID do Medicamento: ").append(this.getId()).append("\n");
+        msg.append("Nome do Medicamento: ").append(this.getNome()).append("\n");
+        msg.append("Codigo de Barras do Medicamento: ").append(this.getCodBarras()).append("\n");
+        msg.append("Data de Entrega: ").append(this.getDataEntrega()).append("\n");
+        msg.append("Data de Vencimento: ").append(this.getDataVencimento()).append("\n");
+        msg.append("Farmacia Popular: ");
+
+        if (this.isFarmPopular()) {
+            msg.append("Sim").append("\n");
+        } else {
+            msg.append("Nao").append("\n");
+        }
+
+        msg.append("Valor do Medicamento: ").append(m.getValor());
+        
+        return msg.toString();
+    }
 }
