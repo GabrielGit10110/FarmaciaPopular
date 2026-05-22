@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import edu.curso.control.MedicamentoController;
 import edu.curso.infraestructure.MedicamentoImplMariaDB;
+import edu.curso.model.Medicamento;
 
 public class CLIMedicamentoUI {
 
@@ -66,7 +67,7 @@ public class CLIMedicamentoUI {
         System.out.print("Valor: ");
         double valor = sc.nextDouble();
 
-        Medicamento m = new Medicamento(this.indice, nome, cod, LocalDate.now(), LocalDate.now().plusMonths(6));
+        Medicamento m = new Medicamento(this.indice, nome, cod, LocalDate.now(), LocalDate.now().plusMonths(6), true, 1.0);
 
         sc.nextLine(); 
 
