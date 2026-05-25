@@ -1,5 +1,3 @@
-.vscode/
-
 .gradle
 **/build/
 !src/**/build/
