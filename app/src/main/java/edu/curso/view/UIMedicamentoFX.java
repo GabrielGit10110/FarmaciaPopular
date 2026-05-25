@@ -84,8 +84,6 @@ public class UIMedicamentoFX extends Application {
         painelTopo.add(this.dtDataEntrega, 1, 2);
         painelTopo.add(this.lblDataValidade, 0, 3);
         painelTopo.add(this.dtDataValidade, 1, 3);
-        painelTopo.add(this.lblDataVencimento, 0, 3);
-        painelTopo.add(this.dtDataVencimento, 1, 3);
         painelTopo.add(this.lblFarmPopular, 0, 4);
         painelTopo.add(this.chkFarmPopular, 1, 4);
         painelTopo.add(this.lblValor, 0, 5);
@@ -153,10 +151,8 @@ public class UIMedicamentoFX extends Application {
                                     "Apagar este Medicamento ?", ButtonType.YES, ButtonType.NO);
                                 alert.setTitle("Confirma Deleção");
 
-                                // 2. Show the alert and wait for a response
                                 Optional<ButtonType> result = alert.showAndWait();
 
-                                // 3. Handle the user's choice
                                 if (result.isPresent() && result.get() == ButtonType.YES) {
                                     UIMedicamentoFX.this.controller.delete( getIndex() ) ;
                                 }
@@ -166,15 +162,17 @@ public class UIMedicamentoFX extends Application {
                         
                         public void updateItem(Void parm, boolean empty) {
                             
-                            if (!empty) {
-                                setGraphic( btnApagar );
+                            if (empty) {
+                                setGraphic(null);
                             } else {
-                                setGraphic( null );
+                                setGraphic(btnApagar);
                             }
                         }
                     };
                 }
         };
+
+        this.tblMedicamentos.getColumns().add(colAcoes);
 
         colAcoes.setCellFactory( callback );
 
