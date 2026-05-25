@@ -84,6 +84,11 @@ public class UIMedicamentoFX extends Application {
         painelTopo.add(this.dtDataEntrega, 1, 2);
         painelTopo.add(this.lblDataValidade, 0, 3);
         painelTopo.add(this.dtDataValidade, 1, 3);
+<<<<<<< HEAD
+=======
+        painelTopo.add(this.lblDataVencimento, 0, 3);
+        painelTopo.add(this.dtDataVencimento, 1, 3);
+>>>>>>> bdb7cbe9c57233548efc1e2490642a5e29029d57
         painelTopo.add(this.lblFarmPopular, 0, 4);
         painelTopo.add(this.chkFarmPopular, 1, 4);
         painelTopo.add(this.lblValor, 0, 5);
