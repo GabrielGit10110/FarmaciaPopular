@@ -7,6 +7,7 @@ import edu.curso.infraestructure.MedicamentoImplMariaDB;
 import edu.curso.model.Medicamento;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -40,13 +41,19 @@ public class UIMedicamentoFX extends Application {
     private Label lblValor = new Label("Valor:");
     private TextField txtValor = new TextField();
 
+    private Button btnSalvar = new Button("SALVAR");
+
     @Override
     public void start(Stage stage) throws Exception {
         Scene scn = new Scene(this.painelPrincipal, 400, 300);
 
         GridPane painelTopo = new GridPane();
+        painelTopo.setHgap(10);
+        painelTopo.setVgap(10);
+
         painelTopo.add(this.lblNome, 0, 0);
         painelTopo.add(this.txtNome, 1, 0);
+        painelTopo.add(this.btnSalvar, 2, 0);
         painelTopo.add(this.lblCodBarras, 0, 1);
         painelTopo.add(this.txtCodBarras, 1, 1);
         painelTopo.add(this.lblDataEntrega, 0, 2);
