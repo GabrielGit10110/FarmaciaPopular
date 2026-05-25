@@ -93,7 +93,14 @@ public class UIMedicamentoFX extends Application {
         painelTopo.add(this.txtValor, 1, 5);
 
         this.btnSalvar.setOnAction(e -> {
-            this.controller.save();
+            try {
+                this.controller.save();
+            } catch (RuntimeException rex) {
+                Alert error = new Alert(AlertType.ERROR);
+                error.setTitle("Erro de input");
+                error.setContentText(rex.getMessage());
+                error.showAndWait();                
+            }
         });
 
         TableColumn<Medicamento, String> colNome = new TableColumn<>("Nome");

@@ -62,8 +62,30 @@ public class MedicamentoController {
         return m;
     }
 
+    // copiar isso para outros CRUDS e mudar as variaveis (mensagem para o Gabes)
+    private void validate(Medicamento m) {
+        if (m.getNome() == null || m.getNome().isBlank()) {
+            throw new RuntimeException("Nome nao pode ser vazio");
+        }
+
+        // nao sei colocar acentos, entao os remedios nao tem acentos
+        if (!m.getNome().matches("[a-zA-Z ]+")) {
+            throw new RuntimeException("Nome nao pode conter numeros ou simbolos");
+        }
+
+        // codigo de barras so pode ser numerico (nao da para copiar isso em outros CRUDs)
+        if (!m.getCodBarras().matches("\\d+")) {
+            throw new RuntimeException("Codigo de barras so pode conter numeros");
+        }
+
+        if (m.getValor() <= 0) {
+            throw new RuntimeException("Valor deve ser maior que 0");
+        }
+    }
+
     public void save() {
         Medicamento m = toEntity();
+        validate(m);
 
         if (this.id.get() > 0) {
             System.out.println("Atualizando Medicamento...\n" + m.toString());

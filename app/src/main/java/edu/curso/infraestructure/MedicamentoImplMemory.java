@@ -8,7 +8,7 @@ import edu.curso.model.Medicamento;
 
 public class MedicamentoImplMemory implements MedicamentoDAO {
     private List<Medicamento> medicamentos = new ArrayList<>();
-    private long id = 0;
+    private long id = 1;
 
     @Override
     public List<Medicamento> findAll() {
