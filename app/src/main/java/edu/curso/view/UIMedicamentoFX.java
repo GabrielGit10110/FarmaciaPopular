@@ -6,6 +6,7 @@ import edu.curso.model.Medicamento;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -62,7 +63,7 @@ public class UIMedicamentoFX extends Application {
     private TableView<Medicamento> tblMedicamentos = new TableView<>();
 
     public void start(Stage stage) throws Exception {
-        Scene scn = new Scene(this.painelPrincipal, 400, 300);
+        Scene scn = new Scene(this.painelPrincipal, 800, 600);
 
         Bindings.bindBidirectional(this.txtNome.textProperty(), this.controller.nomeProperty());
         Bindings.bindBidirectional(this.txtCodBarras.textProperty(), this.controller.codBarrasProperty());
@@ -78,12 +79,13 @@ public class UIMedicamentoFX extends Application {
         painelTopo.add(this.lblNome, 0, 0);
         painelTopo.add(this.txtNome, 1, 0);
         painelTopo.add(this.btnSalvar, 2, 0);
+
         painelTopo.add(this.lblCodBarras, 0, 1);
         painelTopo.add(this.txtCodBarras, 1, 1);
+
         painelTopo.add(this.lblDataEntrega, 0, 2);
         painelTopo.add(this.dtDataEntrega, 1, 2);
-        painelTopo.add(this.lblDataValidade, 0, 3);
-        painelTopo.add(this.dtDataValidade, 1, 3);
+
         painelTopo.add(this.lblDataVencimento, 0, 3);
         painelTopo.add(this.dtDataVencimento, 1, 3);
         painelTopo.add(this.lblFarmPopular, 0, 4);
@@ -178,7 +180,9 @@ public class UIMedicamentoFX extends Application {
 
         colAcoes.setCellFactory( callback );
 
+        this.painelPrincipal.setPadding(new Insets(15));
         this.painelPrincipal.setTop(painelTopo);
+        BorderPane.setMargin(painelTopo, new Insets(15));
         this.painelPrincipal.setCenter(this.tblMedicamentos);
 
         stage.setScene(scn);
