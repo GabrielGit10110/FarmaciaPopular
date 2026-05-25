@@ -2,6 +2,7 @@ package edu.curso.view;
 
 import edu.curso.control.MedicamentoController;
 import edu.curso.infraestructure.MedicamentoImplMariaDB;
+import edu.curso.infraestructure.MedicamentoImplMemory;
 import edu.curso.model.Medicamento;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
@@ -36,7 +37,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public class UIMedicamentoFX extends Application {
-    private final MedicamentoController controller = new MedicamentoController(new MedicamentoImplMariaDB());
+    private final MedicamentoController controller = new MedicamentoController(new MedicamentoImplMemory());
     private Label lblNome = new Label("Nome:");
     private TextField txtNome = new TextField();
 
@@ -47,8 +48,6 @@ public class UIMedicamentoFX extends Application {
     private Label lblDataEntrega = new Label("Data de Entrega:");
     private DatePicker dtDataEntrega = new DatePicker(LocalDate.now());
 
-    private Label lblDataValidade = new Label("Data de Validade:");
-    private DatePicker dtDataValidade = new DatePicker(LocalDate.now());
     private Label lblDataVencimento = new Label("Data de Vencimento:");
     private DatePicker dtDataVencimento = new DatePicker(LocalDate.now());
 
