@@ -159,7 +159,7 @@ public class UIMedicamentoFX extends Application {
                                 
                             });
                         }
-                        
+                       // 
                         public void updateItem(Void parm, boolean empty) {
                             
                             if (empty) {
