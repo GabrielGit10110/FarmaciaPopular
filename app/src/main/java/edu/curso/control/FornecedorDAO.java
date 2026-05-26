@@ -10,7 +10,7 @@ public interface FornecedorDAO {
     public void delete(Fornecedor f);
     public List<Fornecedor> findAll();
     public Fornecedor findById(long id);
-    public List<Fornecedor> findByName(String nome);
+    public List<Fornecedor> findByNome(String nome);
     public Fornecedor findByCnpj(String cnpj);
 
 }

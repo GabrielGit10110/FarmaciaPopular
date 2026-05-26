@@ -1,53 +1,75 @@
 package edu.curso.infraestructure;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.curso.control.FornecedorDAO;
 import edu.curso.model.Fornecedor;
 
 public class FornecedorImplMemory implements FornecedorDAO {
-
-    @Override
-    public void save(Fornecedor f) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
-    }
-
-    @Override
-    public void update(long id, Fornecedor f) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
-    public void delete(Fornecedor f) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
+    private List<Fornecedor> fornecedores = new ArrayList<>();
+    private long id = 1;
 
     @Override
     public List<Fornecedor> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return new ArrayList<>(fornecedores);
+    }
+
+    @Override
+    public void save(Fornecedor m) {
+        m.setId(this.id);
+        fornecedores.add(m);
+        this.id++;
+    }
+
+    @Override
+    public void delete(Fornecedor m) {
+        fornecedores.remove(m);
+
+    }
+
+    @Override
+    public void update(long id, Fornecedor m) {
+        for (int i = 0; i < fornecedores.size(); i++) {
+            if (fornecedores.get(i).getId() == id) {
+                fornecedores.set(i, m);
+                return;
+            }
+        }
+
     }
 
     @Override
     public Fornecedor findById(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        for (Fornecedor f : fornecedores) {
+            if (f.getId() == id) {
+                return f;
+            }
+        }
+        return null;
     }
 
     @Override
-    public List<Fornecedor> findByName(String nome) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByName'");
+    public List<Fornecedor> findByNome(String nome) {
+        List<Fornecedor> nomes = new ArrayList<>();
+
+        for (Fornecedor f : fornecedores) {
+            if (f.getNome().toLowerCase().contains(nome.toLowerCase())) {
+                nomes.add(f);
+            }
+        }
+
+        return nomes;
     }
 
     @Override
-    public Fornecedor findByCnpj(String cnpj) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByCnpj'");
+    public Fornecedor findByCnpj(String codBarras) {
+        for (Fornecedor f : fornecedores) {
+            if (f.getCnpj().toLowerCase().contains(codBarras.toLowerCase())) {
+                return f;
+            }
+        }
+        return null;
     }
 
 }
-//
