@@ -150,5 +150,4 @@ public class MedicamentoController {
     public DoubleProperty valorProperty() { return this.valor; }
 
     public ObservableList<Medicamento> getLista() { return this.lista; }
-    // TEST MERGE
 }
