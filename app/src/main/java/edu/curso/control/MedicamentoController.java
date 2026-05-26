@@ -73,7 +73,10 @@ public class MedicamentoController {
             throw new RuntimeException("Nome nao pode conter numeros ou simbolos");
         }
 
-        // codigo de barras so pode ser numerico (nao da para copiar isso em outros CRUDs)
+        if (m.getCodBarras() == null || m.getCodBarras().isBlank()) {
+            throw new RuntimeException("Codigo de barras nao pode ser vazio");
+        }
+
         if (!m.getCodBarras().matches("\\d+")) {
             throw new RuntimeException("Codigo de barras so pode conter numeros");
         }

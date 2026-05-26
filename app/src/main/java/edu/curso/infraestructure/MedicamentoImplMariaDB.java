@@ -13,7 +13,7 @@ import edu.curso.control.MedicamentoDAO;
 import edu.curso.model.Medicamento;
 
 public class MedicamentoImplMariaDB implements MedicamentoDAO {
-    private static final String DB_URI = "";
+    private static final String DB_URI = "jdbc:mariadb://localhost:3306/farmacia";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "123456";
 
@@ -78,7 +78,7 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
     public void save(Medicamento m) {
         try {
             String sql = "INSERT INTO medicamento (nome, codigo_de_barras, data_de_entrega, "+
-                         "data_de_vencimento, farmacia_popular, valor "+
+                         "data_de_vencimento, farmacia_popular, valor) "+
                          "VALUES(?, ?, ?, ?, ?, ?)";
             
             PreparedStatement stm = con.prepareStatement(sql);
