@@ -16,6 +16,7 @@ public class FornecedorController {
     private LongProperty id = new SimpleLongProperty(0);
     private StringProperty nome = new SimpleStringProperty("");
     private StringProperty cnpj = new SimpleStringProperty("");
+    private StringProperty endereco = new SimpleStringProperty("");
     private StringProperty telefone = new SimpleStringProperty("");
     private StringProperty email = new SimpleStringProperty("");
 
@@ -28,6 +29,7 @@ public class FornecedorController {
         this.id.set(0);
         this.nome.set("");
         this.cnpj.set("");
+        this.endereco.set("");
         this.telefone.set("");
         this.email.set("");
     }
@@ -37,6 +39,7 @@ public class FornecedorController {
             this.id.set( f.getId() );
             this.nome.set( f.getNome() );
             this.cnpj.set( f.getCnpj() );
+            this.endereco.set( f.getEndereco() );
             this.telefone.set( f.getTelefone() );
             this.email.set( f.getEmail() );
         }
@@ -47,6 +50,7 @@ public class FornecedorController {
                                     this.id.get(),
                                     this.nome.get(),
                                     this.cnpj.get(),
+                                    this.endereco.get(),
                                     this.telefone.get(),
                                     this.email.get()
                                 );
@@ -70,6 +74,14 @@ public class FornecedorController {
 
         if (!f.getCnpj().matches("\\d+")) {
             throw new RuntimeException("Cnpj so pode conter numeros");
+        }
+
+        if (f.getEndereco() == null || f.getEndereco().isBlank()) {
+            throw new RuntimeException("Endereco nao pode ser vazio");
+        }
+
+        if (!f.getEndereco().matches("[a-za-Z0-9 ]+")) {
+            throw new RuntimeException("Endereco so pode contar letras, espacos e numeros");
         }
 
         if (f.getTelefone() == null || f.getTelefone().isBlank()) {
@@ -140,6 +152,9 @@ public class FornecedorController {
 
     public String getCnpj() { return this.cnpj.get(); }
     public StringProperty cnpjProperty() { return this.cnpj; }
+
+    public String getEndereco() { return this.endereco.get(); }
+    public StringProperty enderecoProperty() { return this.endereco; }
 
     public String getTelefone() { return this.telefone.get(); }
     public StringProperty telefoneProperty() { return this.telefone; }
