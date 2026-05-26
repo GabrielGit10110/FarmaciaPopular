@@ -45,6 +45,7 @@ public class UIFornecedorFX extends Application {
     private TextField txtCnpj = new TextField();
 
     private BorderPane painelPrincipal = new BorderPane();
+
     private Label lblEndereco = new Label("Endereco:");
     private TextField txtEndereco = new TextField();
 
@@ -63,10 +64,9 @@ public class UIFornecedorFX extends Application {
 
         Bindings.bindBidirectional(this.txtNome.textProperty(), this.controller.nomeProperty());
         Bindings.bindBidirectional(this.txtCnpj.textProperty(), this.controller.cnpjProperty());
-        Bindings.bindBidirectional(this.txtEndereco.textProperty(), this.controller.());
+        Bindings.bindBidirectional(this.txtEndereco.textProperty(), this.controller.enderecoProperty());
         Bindings.bindBidirectional(this.txtEmail.valueProperty(), this.controller.dataVencimentoProperty());
         Bindings.bindBidirectional(this.txtTelefone.selectedProperty(), this.controller.farmPopularProperty());
-        Bindings.bindBidirectional(this.txtValor.textProperty(), this.controller.valorProperty(), new NumberStringConverter());
 
         GridPane painelTopo = new GridPane();
         painelTopo.setHgap(10);
@@ -82,12 +82,10 @@ public class UIFornecedorFX extends Application {
         painelTopo.add(this.lblEndereco, 0, 2);
         painelTopo.add(this.txtEndereco, 1, 2);
 
-        painelTopo.add(this.lblDataVencimento, 0, 3);
+        painelTopo.add(this.lblEmail, 0, 3);
         painelTopo.add(this.txtEmail, 1, 3);
         painelTopo.add(this.lblTelefone, 0, 4);
         painelTopo.add(this.txtTelefone, 1, 4);
-        painelTopo.add(this.lblValor, 0, 5);
-        painelTopo.add(this.txtValor, 1, 5);
 
         this.btnSalvar.setOnAction(e -> {
             try {
@@ -106,30 +104,25 @@ public class UIFornecedorFX extends Application {
             itemData -> new ReadOnlyStringWrapper(itemData.getValue().getNome())
         );
 
-        TableColumn<Fornecedor, String> colCodBarras = new TableColumn<>("Codigo de Barras");
+        TableColumn<Fornecedor, String> colCnpj = new TableColumn<>("CNPJ");
         colCodBarras.setCellValueFactory(
-            itemData -> new ReadOnlyStringWrapper(itemData.getValue().getCodBarras())
+            itemData -> new ReadOnlyStringWrapper(itemData.getValue().getCnpj())
         );
 
-        TableColumn<Fornecedor, String> colDataEntrega = new TableColumn<>("Data de Entrega");
+        TableColumn<Fornecedor, String> colEndereco = new TableColumn<>("Endereco");
         colDataEntrega.setCellValueFactory(
-            itemData -> new ReadOnlyStringWrapper(itemData.getValue().getDataEntrega().toString())
+            itemData -> new ReadOnlyStringWrapper(itemData.getValue().getEndereco())
         );
 
-        TableColumn<Fornecedor, String> colDataVencimento = new TableColumn<>("Data de Vencimento");
+        TableColumn<Fornecedor, String> colEmail = new TableColumn<>("Email");
         colDataVencimento.setCellValueFactory(
-            itemData -> new ReadOnlyStringWrapper(itemData.getValue().getDataVencimento().toString())
+            itemData -> new ReadOnlyStringWrapper(itemData.getValue().getEmail())
         );
         //
 
-        TableColumn<Fornecedor, String> colFarmPopular = new TableColumn<>("Farmacia Popular");
+        TableColumn<Fornecedor, String> colTelefone = new TableColumn<>("Telefone");
         colFarmPopular.setCellValueFactory(
-            itemData -> new ReadOnlyStringWrapper(itemData.getValue().isFarmPopular() ? "Sim" : "Nao")
-        );
-
-        TableColumn<Fornecedor, String> colValor = new TableColumn<>("Valor");
-        colValor.setCellValueFactory(
-            itemData -> new ReadOnlyStringWrapper(String.valueOf(itemData.getValue().getValor()))
+            itemData -> new ReadOnlyStringWrapper(itemData.getValue().getTelefone())
         );
 
         TableColumn<Fornecedor, Void> colAcoes = new TableColumn<>("Acoes");
@@ -139,11 +132,10 @@ public class UIFornecedorFX extends Application {
         );
 
         this.tblFornecedores.getColumns().add(colNome);
-        this.tblFornecedores.getColumns().add(colCodBarras);
-        this.tblFornecedores.getColumns().add(colDataEntrega);
-        this.tblFornecedores.getColumns().add(colDataVencimento);
-        this.tblFornecedores.getColumns().add(colFarmPopular);
-        this.tblFornecedores.getColumns().add(colValor);
+        this.tblFornecedores.getColumns().add(colCnpj);
+        this.tblFornecedores.getColumns().add(colEndereco);
+        this.tblFornecedores.getColumns().add(colEmail);
+        this.tblFornecedores.getColumns().add(colTelefone);
 
         this.tblFornecedores.setItems(this.controller.getLista());
 

@@ -153,6 +153,9 @@ public class FornecedorController {
     public String getCnpj() { return this.cnpj.get(); }
     public StringProperty cnpjProperty() { return this.cnpj; }
 
+    public String getEndereco() { return this.endereco.get(); }
+    public StringProperty enderecoProperty() { return this.endereco; }
+
     public String getTelefone() { return this.telefone.get(); }
     public StringProperty telefoneProperty() { return this.telefone; }
 
