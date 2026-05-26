@@ -2,7 +2,7 @@ package edu.curso.view;
 
 import edu.curso.control.MedicamentoController;
 import edu.curso.infraestructure.MedicamentoImplMariaDB;
-import edu.curso.infraestructure.MedicamentoImplMemory;
+// import edu.curso.infraestructure.MedicamentoImplMemory;
 import edu.curso.model.Medicamento;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
@@ -37,7 +37,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public class UIMedicamentoFX extends Application {
-    private final MedicamentoController controller = new MedicamentoController(new MedicamentoImplMemory());
+    private final MedicamentoController controller = new MedicamentoController(new MedicamentoImplMariaDB());
     private Label lblNome = new Label("Nome:");
     private TextField txtNome = new TextField();
 
@@ -95,6 +95,7 @@ public class UIMedicamentoFX extends Application {
         this.btnSalvar.setOnAction(e -> {
             try {
                 this.controller.save();
+                this.tblMedicamentos.getSelectionModel().clearSelection();
             } catch (RuntimeException rex) {
                 Alert error = new Alert(AlertType.ERROR);
                 error.setTitle("Erro de input");
@@ -165,6 +166,7 @@ public class UIMedicamentoFX extends Application {
 
                                 if (result.isPresent() && result.get() == ButtonType.YES) {
                                     UIMedicamentoFX.this.controller.delete( getIndex() ) ;
+                                    tblMedicamentos.getSelectionModel().clearSelection();
                                 }
                                 
                             });
@@ -185,6 +187,13 @@ public class UIMedicamentoFX extends Application {
         this.tblMedicamentos.getColumns().add(colAcoes);
 
         colAcoes.setCellFactory( callback );
+
+        this.painelPrincipal.setOnMouseClicked(event -> {
+            if (!tblMedicamentos.isHover()) {
+                tblMedicamentos.getSelectionModel().clearSelection();
+                controller.clearFields();
+            }
+        });
 
         this.painelPrincipal.setPadding(new Insets(15));
         this.painelPrincipal.setTop(painelTopo);
