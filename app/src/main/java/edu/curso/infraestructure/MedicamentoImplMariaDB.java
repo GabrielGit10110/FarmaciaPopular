@@ -40,7 +40,7 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
         List<Medicamento> lista = new ArrayList<>();
 
         try {
-            String sqlCommand = "SELECT * FROM medicamento";
+            String sqlCommand = "SELECT * FROM medicamento ";
 
             PreparedStatement stm = con.prepareStatement(sqlCommand);
             ResultSet rs = stm.executeQuery();
@@ -77,8 +77,8 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
     @Override
     public void save(Medicamento m) {
         try {
-            String sql = "INSERT INTO medicamento (nome, codigo_de_barras, data_de_entrega"+
-                         "data_de_vencimento, farmacia_popular, valor"+
+            String sql = "INSERT INTO medicamento (nome, codigo_de_barras, data_de_entrega, "+
+                         "data_de_vencimento, farmacia_popular, valor "+
                          "VALUES(?, ?, ?, ?, ?, ?)";
             
             PreparedStatement stm = con.prepareStatement(sql);
@@ -96,7 +96,7 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
             stm.executeUpdate();
             System.out.println("Medicamento inserido no banco...");
         } catch (SQLException e) {
-            System.out.println("Erro ao conectar no banco de dados");
+            System.out.println("Erro ao salvar o medicamento");
             e.printStackTrace();
         }
     }
@@ -104,7 +104,7 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
     @Override
     public void delete(Medicamento m) {
         try {
-            String sql = "DELETE FROM medicamento"+
+            String sql = "DELETE FROM medicamento "+
                          "WHERE id = ?";
 
             PreparedStatement stm = con.prepareStatement(sql);
@@ -113,7 +113,7 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
             stm.executeUpdate();
             System.out.println("Medicamento removido do banco...");
         } catch (SQLException e) {
-            System.out.println("Erro ao conectar no banco de dados");
+            System.out.println("Erro ao deletar o medicamento");
             e.printStackTrace();
         }
     }
@@ -121,9 +121,9 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
     @Override
     public void update(long id, Medicamento m) {
         try {
-            String sql = "UPDATE medicamento SET nome=?, codigo_de_barras=?, data_de_entrega=?"+
-                         "data_de_vencimento=?, farmacia_popular=?, valor=?"+
-                         "WHERE id = ?";
+            String sql = "UPDATE medicamento SET nome=?, codigo_de_barras=?, data_de_entrega=?, "+
+                         "data_de_vencimento=?, farmacia_popular=?, valor=? "+
+                         "WHERE id = ? ";
 
             PreparedStatement stm = con.prepareStatement(sql);
             stm.setString(1, m.getNome());
@@ -137,10 +137,12 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
             stm.setBoolean(5, m.isFarmPopular());
             stm.setDouble(6, m.getValor());
 
+            stm.setLong(7, m.getId());
+
             stm.executeUpdate();
             System.out.println("Medicamento atualizado no banco...");
         } catch (SQLException e) {
-            System.out.println("Erro ao conectar ao banco de dados");
+            System.out.println("Erro ao atualizar informacoes do medicamento");
             e.printStackTrace();
         }
     }
@@ -150,7 +152,7 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
         Medicamento m = new Medicamento();
 
         try {
-            String sql = "SELECT * FROM medicamento"+
+            String sql = "SELECT * FROM medicamento "+
                          "WHERE id = ?";
 
             PreparedStatement stm = con.prepareStatement(sql);
@@ -175,7 +177,7 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
                 m.setValor(valor);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao conectar no banco de dados");
+            System.out.println("Erro ao buscar medicamento por id");
             e.printStackTrace();
         }
 
@@ -184,16 +186,81 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
 
     @Override
     public List<Medicamento> searchByName(String nome) {
-        System.out.println("Buscando medicamentos pelo nome no banco...");
+        List<Medicamento> lista = new ArrayList<>();
 
-        return null;
+        try {
+            String sql = "SELECT * FROM medicamento "+
+                         "WHERE nome LIKE ?";
+
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, "%" + nome + "%");
+            ResultSet rs = stm.executeQuery();
+            System.out.println("Medicamentos encontrados no banco...");
+            while (rs.next()) {
+                Medicamento m = new Medicamento();
+
+                long idMedicamento = rs.getLong("id");
+                String nomeMedicamento =  rs.getString("nome");
+                String codBarras = rs.getString("codigo_de_barras");
+                LocalDate dataEntrega = rs.getDate("data_de_entrega").toLocalDate();
+                LocalDate dataVencimento = rs.getDate("data_de_vencimento").toLocalDate();
+                boolean farmPopular = rs.getBoolean("farmacia_popular");
+                double valor = rs.getDouble("valor");
+
+                m.setId(idMedicamento);
+                m.setNome(nomeMedicamento);
+                m.setCodBarras(codBarras);
+                m.setDataEntrega(dataEntrega);
+                m.setDataVencimento(dataVencimento);
+                m.setFarmPopular(farmPopular);
+                m.setValor(valor);
+
+                lista.add(m);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar medicamentos por nome");
+            e.printStackTrace();
+        }
+
+        return lista;
     }
 
     @Override
     public Medicamento searchByCode(String codBarras) {
-        System.out.println("Bsucando medicamentos pelo codigo no banco...");
+        Medicamento m = new Medicamento();
 
-        return null;
+        try {
+            String sql = "SELECT * FROM medicamento "+
+                         "WHERE codigo_de_barras = ?";
+
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setString(1, codBarras);
+            ResultSet rs = stm.executeQuery();
+            System.out.println("Medicamento encontrado no banco...");
+            while (rs.next()) {
+                long idMedicamento = rs.getLong("id");
+                String nome =  rs.getString("nome");
+                String codBarrasMedicamento = rs.getString("codigo_de_barras");
+                LocalDate dataEntrega = rs.getDate("data_de_entrega").toLocalDate();
+                LocalDate dataVencimento = rs.getDate("data_de_vencimento").toLocalDate();
+                boolean farmPopular = rs.getBoolean("farmacia_popular");
+                double valor = rs.getDouble("valor");
+
+                m.setId(idMedicamento);
+                m.setNome(nome);
+                m.setCodBarras(codBarrasMedicamento);
+                m.setDataEntrega(dataEntrega);
+                m.setDataVencimento(dataVencimento);
+                m.setFarmPopular(farmPopular);
+                m.setValor(valor);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar medicamento por codigo de barras");
+            e.printStackTrace();
+        }
+
+        return m;
+
     }
 
 }
