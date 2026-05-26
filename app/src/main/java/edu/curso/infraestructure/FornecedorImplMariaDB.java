@@ -5,7 +5,7 @@ import java.util.List;
 import edu.curso.control.FornecedorDAO;
 import edu.curso.model.Fornecedor;
 
-public class FornecedorImplMemory implements FornecedorDAO {
+public class FornecedorImplMariaDB implements FornecedorDAO {
 
     @Override
     public void save(Fornecedor f) {
@@ -50,4 +50,3 @@ public class FornecedorImplMemory implements FornecedorDAO {
     }
 
 }
-//
