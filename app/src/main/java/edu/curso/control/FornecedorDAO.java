@@ -14,4 +14,3 @@ public interface FornecedorDAO {
     public Fornecedor findByCnpj(String cnpj);
 
 }
-//
