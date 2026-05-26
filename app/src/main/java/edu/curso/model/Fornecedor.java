@@ -4,6 +4,7 @@ public class Fornecedor {
     private long id;
     private String nome;
     private String cnpj;
+    private String endereco;
     private String telefone;
     private String email;
 
@@ -11,21 +12,24 @@ public class Fornecedor {
         this.id = 0;
         this.nome = "";
         this.cnpj = "";
+        this.endereco = "";
         this.telefone = "";
         this.email = "";
     }
 
-    public Fornecedor(long id, String nome, String cnpj, String telefone, String email) {
+    public Fornecedor(long id, String nome, String cnpj, String endereco, String telefone, String email) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
+        this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
     }
 
-    public Fornecedor(String nome, String cnpj, String telefone, String email) {
+    public Fornecedor(String nome, String cnpj, String endereco, String telefone, String email) {
         this.nome = nome;
         this.cnpj = cnpj;
+        this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
     }
@@ -38,6 +42,9 @@ public class Fornecedor {
 
     public String getCnpj() { return cnpj; }
     public void setCnpj(String cnpj) { this.cnpj = cnpj; }
+
+    public String getEndereco() { return endereco; }
+    public void setEndereco(String endereco) { this.endereco = endereco; }
 
     public String getTelefone() { return telefone; }
     public void setTelefone(String telefone) { this.telefone = telefone; }
