@@ -56,14 +56,14 @@ public class UIFornecedorFX extends Application {
 
     private Button btnSalvar = new Button("SALVAR");
 
-    private TableView<Fornecedor> tblFornecedors = new TableView<>();
+    private TableView<Fornecedor> tblFornecedores = new TableView<>();
 
     public void start(Stage stage) throws Exception {
         Scene scn = new Scene(this.painelPrincipal, 800, 600);
 
         Bindings.bindBidirectional(this.txtNome.textProperty(), this.controller.nomeProperty());
-        Bindings.bindBidirectional(this.txtCnpj.textProperty(), this.controller.codBarrasProperty());
-        Bindings.bindBidirectional(this.txtEndereco.valueProperty(), this.controller.dataEntregaProperty());
+        Bindings.bindBidirectional(this.txtCnpj.textProperty(), this.controller.cnpjProperty());
+        Bindings.bindBidirectional(this.txtEndereco.textProperty(), this.controller.());
         Bindings.bindBidirectional(this.txtEmail.valueProperty(), this.controller.dataVencimentoProperty());
         Bindings.bindBidirectional(this.txtTelefone.selectedProperty(), this.controller.farmPopularProperty());
         Bindings.bindBidirectional(this.txtValor.textProperty(), this.controller.valorProperty(), new NumberStringConverter());
@@ -92,7 +92,7 @@ public class UIFornecedorFX extends Application {
         this.btnSalvar.setOnAction(e -> {
             try {
                 this.controller.save();
-                this.tblFornecedors.getSelectionModel().clearSelection();
+                this.tblFornecedores.getSelectionModel().clearSelection();
             } catch (RuntimeException rex) {
                 Alert error = new Alert(AlertType.ERROR);
                 error.setTitle("Erro de input");
@@ -134,18 +134,18 @@ public class UIFornecedorFX extends Application {
 
         TableColumn<Fornecedor, Void> colAcoes = new TableColumn<>("Acoes");
 
-        this.tblFornecedors.getSelectionModel().selectedItemProperty().addListener(
+        this.tblFornecedores.getSelectionModel().selectedItemProperty().addListener(
             (obj, antigo, novo) -> this.controller.fromEntity(novo)
         );
 
-        this.tblFornecedors.getColumns().add(colNome);
-        this.tblFornecedors.getColumns().add(colCodBarras);
-        this.tblFornecedors.getColumns().add(colDataEntrega);
-        this.tblFornecedors.getColumns().add(colDataVencimento);
-        this.tblFornecedors.getColumns().add(colFarmPopular);
-        this.tblFornecedors.getColumns().add(colValor);
+        this.tblFornecedores.getColumns().add(colNome);
+        this.tblFornecedores.getColumns().add(colCodBarras);
+        this.tblFornecedores.getColumns().add(colDataEntrega);
+        this.tblFornecedores.getColumns().add(colDataVencimento);
+        this.tblFornecedores.getColumns().add(colFarmPopular);
+        this.tblFornecedores.getColumns().add(colValor);
 
-        this.tblFornecedors.setItems(this.controller.getLista());
+        this.tblFornecedores.setItems(this.controller.getLista());
 
         Callback<TableColumn<Fornecedor, Void>, TableCell<Fornecedor, Void>> 
             callback = new Callback<>(){ 
@@ -163,7 +163,7 @@ public class UIFornecedorFX extends Application {
 
                                 if (result.isPresent() && result.get() == ButtonType.YES) {
                                     UIFornecedorFX.this.controller.delete( getIndex() ) ;
-                                    tblFornecedors.getSelectionModel().clearSelection();
+                                    tblFornecedores.getSelectionModel().clearSelection();
                                 }
                                 
                             });
@@ -181,13 +181,13 @@ public class UIFornecedorFX extends Application {
                 }
         };
 
-        this.tblFornecedors.getColumns().add(colAcoes);
+        this.tblFornecedores.getColumns().add(colAcoes);
 
         colAcoes.setCellFactory( callback );
 
         this.painelPrincipal.setOnMouseClicked(event -> {
-            if (!tblFornecedors.isHover()) {
-                tblFornecedors.getSelectionModel().clearSelection();
+            if (!tblFornecedores.isHover()) {
+                tblFornecedores.getSelectionModel().clearSelection();
                 controller.clearFields();
             }
         });
@@ -195,7 +195,7 @@ public class UIFornecedorFX extends Application {
         this.painelPrincipal.setPadding(new Insets(15));
         this.painelPrincipal.setTop(painelTopo);
         BorderPane.setMargin(painelTopo, new Insets(15));
-        this.painelPrincipal.setCenter(this.tblFornecedors);
+        this.painelPrincipal.setCenter(this.tblFornecedores);
 
         stage.setScene(scn);
         stage.show();
