@@ -52,6 +52,7 @@ public class UIFornecedorFX extends Application {
     private TextField txtTelefone = new TextField();
 
     private Button btnSalvar = new Button("SALVAR");
+    private Button bntLimpar = new Button("LIMPAR");
 
     private TableView<Fornecedor> tblFornecedores = new TableView<>();
 
@@ -74,6 +75,7 @@ public class UIFornecedorFX extends Application {
 
         painelTopo.add(this.lblCnpj, 0, 1);
         painelTopo.add(this.txtCnpj, 1, 1);
+        painelTopo.add(this.bntLimpar, 2, 1);
 
         painelTopo.add(this.lblEndereco, 0, 2);
         painelTopo.add(this.txtEndereco, 1, 2);
@@ -93,6 +95,10 @@ public class UIFornecedorFX extends Application {
                 error.setContentText(rex.getMessage());
                 error.showAndWait();                
             }
+        });
+
+        this.bntLimpar.setOnAction(e -> {
+            this.controller.clearFields();
         });
 
         TableColumn<Fornecedor, String> colNome = new TableColumn<>("Nome");
