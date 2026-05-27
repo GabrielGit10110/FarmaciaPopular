@@ -1,8 +1,8 @@
 package edu.curso.view;
 
 import edu.curso.control.FornecedorController;
-// import edu.curso.infraestructure.FornecedorImplMariaDB;
-import edu.curso.infraestructure.FornecedorImplMemory;
+import edu.curso.infraestructure.FornecedorImplMariaDB;
+// import edu.curso.infraestructure.FornecedorImplMemory;
 import edu.curso.model.Fornecedor;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
@@ -17,23 +17,16 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-// import javafx.scene.image.Image;
-// import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-// import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-// import javafx.util.StringConverter;
-// import javafx.util.converter.LocalDateStringConverter;
-// import javafx.scene.control.DatePicker;
-// import javafx.scene.control.CheckBox;
 
 import java.util.Optional;
 
 public class UIFornecedorFX extends Application {
-    private final FornecedorController controller = new FornecedorController(new FornecedorImplMemory());
+    private final FornecedorController controller = new FornecedorController(new FornecedorImplMariaDB());
     private Label lblNome = new Label("Nome:");
     private TextField txtNome = new TextField();
 
