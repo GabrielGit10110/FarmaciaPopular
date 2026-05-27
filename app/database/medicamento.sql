@@ -1,4 +1,4 @@
-CREATE TABLE medicamento (
+CREATE TABLE IF NOT EXISTS medicamento (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
     codigo_de_barras VARCHAR(50),
