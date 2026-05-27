@@ -64,6 +64,11 @@ public class FornecedorController {
             throw new RuntimeException("Nome nao pode ser vazio");
         }
 
+        if (f.getNome() != null && f.getNome().length() > 10) {
+            System.out.println("Nome nao pode ter mais de 100 caracteres");
+            throw new RuntimeException("Nome nao pode ter mais de 100 caracteres");
+        }
+
         // nao sei colocar acentos, entao os remedios nao tem acentos
         if (!f.getNome().matches("[a-zA-Z ]+")) {
             System.out.println("Nome nao pode conter numeros ou simbolos");
@@ -73,6 +78,11 @@ public class FornecedorController {
         if (f.getCnpj() == null || f.getCnpj().isBlank()) {
             System.out.println("Cnpj nao pode ser vazio");
             throw new RuntimeException("Cnpj nao pode ser vazio");
+        }
+
+        if (f.getCnpj() != null && f.getCnpj().length() != 14) {
+            System.out.println("CNPJ deve ter EXATAMENTE 14 caracteres");
+            throw new RuntimeException("CNPJ deve ter EXATAMENTE 14 caracteres");
         }
 
         if (!f.getCnpj().matches("\\d+")) {
@@ -90,9 +100,19 @@ public class FornecedorController {
             throw new RuntimeException("Endereco so pode contar letras, espacos e numeros");
         }
 
+        if (f.getEndereco() != null && f.getEndereco().length() > 320) {
+            System.out.println("Endereco nao pode ser maior que 320 caracteres");
+            throw new RuntimeException("Endereco nao pode ser maior que 320 caracteres");
+        }
+
         if (f.getTelefone() == null || f.getTelefone().isBlank()) {
             System.out.println("Telefone nao pode ser vazio");
             throw new RuntimeException("Telefone nao pode ser vazio");
+        }
+
+        if (f.getTelefone() != null && f.getTelefone().length() != 11) {
+            System.out.println("Numero de telefone deve conter 11 digitos (2 do DDD e 9 do numero)");
+            throw new RuntimeException("Numero de telefone deve conter 11 digitos (2 do DDD e 9 do numero)");
         }
 
         if (!f.getTelefone().matches("\\d+")) {
@@ -103,6 +123,11 @@ public class FornecedorController {
         if (f.getEmail() == null || f.getEmail().isBlank()) {
             System.out.println("Email nao pode ser vazio");
             throw new RuntimeException("Email nao pode ser vazio");
+        }
+
+        if (f.getEmail() != null && f.getEndereco().length() > 320) {
+            System.out.println("Endereco de email nao pode ser maior que 320 caracteres");
+            throw new RuntimeException("Endereco de email nao pode ser maior que 320 caracteres");
         }
 
         if (!f.getEmail().matches("[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+")) {
