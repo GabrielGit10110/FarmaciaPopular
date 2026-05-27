@@ -16,23 +16,23 @@ public class FornecedorImplMemory implements FornecedorDAO {
     }
 
     @Override
-    public void save(Fornecedor m) {
-        m.setId(this.id);
-        fornecedores.add(m);
+    public void save(Fornecedor f) {
+        f.setId(this.id);
+        fornecedores.add(f);
         this.id++;
     }
 
     @Override
-    public void delete(Fornecedor m) {
-        fornecedores.remove(m);
+    public void delete(Fornecedor f) {
+        fornecedores.remove(f);
 
     }
 
     @Override
-    public void update(long id, Fornecedor m) {
+    public void update(long id, Fornecedor f) {
         for (int i = 0; i < fornecedores.size(); i++) {
             if (fornecedores.get(i).getId() == id) {
-                fornecedores.set(i, m);
+                fornecedores.set(i, f);
                 return;
             }
         }
