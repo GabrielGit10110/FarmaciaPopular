@@ -157,6 +157,7 @@ public class FornecedorController {
         Fornecedor f = this.lista.get(indice);
         this.dao.delete(f);
         System.out.println("Deletando Fornecedor...\n" + f.toString());
+        clearFields();
         load();
     }
 
