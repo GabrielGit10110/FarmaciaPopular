@@ -41,6 +41,7 @@ public class UIFornecedorFX extends Application {
     private TextField txtCnpj = new TextField();
 
     private BorderPane painelPrincipal = new BorderPane();
+
     private Label lblEndereco = new Label("Endereco:");
     private TextField txtEndereco = new TextField();
 
@@ -119,7 +120,6 @@ public class UIFornecedorFX extends Application {
         colTelefone.setCellValueFactory(
             itemData -> new ReadOnlyStringWrapper(itemData.getValue().getTelefone())
         );
-
 
         TableColumn<Fornecedor, Void> colAcoes = new TableColumn<>("Acoes");
 
