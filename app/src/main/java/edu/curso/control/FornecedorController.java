@@ -60,43 +60,53 @@ public class FornecedorController {
     // copiar isso para outros CRUDS e f.dar as variaveis (mensagem para o Gabes)
     private void validate(Fornecedor f) {
         if (f.getNome() == null || f.getNome().isBlank()) {
+            System.out.println("Nome nao pode ser vazio");
             throw new RuntimeException("Nome nao pode ser vazio");
         }
 
         // nao sei colocar acentos, entao os remedios nao tem acentos
         if (!f.getNome().matches("[a-zA-Z ]+")) {
+            System.out.println("Nome nao pode conter numeros ou simbolos");
             throw new RuntimeException("Nome nao pode conter numeros ou simbolos");
         }
 
         if (f.getCnpj() == null || f.getCnpj().isBlank()) {
+            System.out.println("Cnpj nao pode ser vazio");
             throw new RuntimeException("Cnpj nao pode ser vazio");
         }
 
         if (!f.getCnpj().matches("\\d+")) {
+            System.out.println("Cnpj so pode conter numeros");
             throw new RuntimeException("Cnpj so pode conter numeros");
         }
 
         if (f.getEndereco() == null || f.getEndereco().isBlank()) {
+            System.out.println("Endereco nao pode ser vazio");
             throw new RuntimeException("Endereco nao pode ser vazio");
         }
 
-        if (!f.getEndereco().matches("[a-za-Z0-9 ]+")) {
+        if (!f.getEndereco().matches("[a-zA-Z0-9 ]+")) {
+            System.out.println("Endereco so pode contar letras, espacos e numeros");
             throw new RuntimeException("Endereco so pode contar letras, espacos e numeros");
         }
 
         if (f.getTelefone() == null || f.getTelefone().isBlank()) {
+            System.out.println("Telefone nao pode ser vazio");
             throw new RuntimeException("Telefone nao pode ser vazio");
         }
 
         if (!f.getTelefone().matches("\\d+")) {
+            System.out.println("Telefone so pode conter numeros");
             throw new RuntimeException("Telefone so pode conter numeros");
         }
 
         if (f.getEmail() == null || f.getEmail().isBlank()) {
+            System.out.println("Email nao pode ser vazio");
             throw new RuntimeException("Email nao pode ser vazio");
         }
 
         if (!f.getEmail().matches("[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+")) {
+            System.out.println("Email nao pode conter espacos, e so usa os seguintes simbolo '.-_' e numeros");
             throw new RuntimeException("Email nao pode conter espacos, e so usa os seguintes simbolo '.-_' e numeros");
         }
 
@@ -107,11 +117,11 @@ public class FornecedorController {
         validate(f);
 
         if (this.id.get() > 0) {
-            System.out.println("Atualizando Fornecedor...\n" + f.toString());
             this.dao.update(id.get(), f);
+            System.out.println("Atualizando Fornecedor...\n" + f.toString());
         } else {
-            System.out.println("Salvando Novo Fornecedor...\n" + f.toString());
             this.dao.save(f);
+            System.out.println("Salvando Novo Fornecedor...\n" + f.toString());
         }
 
         clearFields();
@@ -120,8 +130,8 @@ public class FornecedorController {
 
     public void delete(int indice) {
         Fornecedor f = this.lista.get(indice);
-        System.out.println("Deletando f.dicamento...\n" + f.toString());
         this.dao.delete(f);
+        System.out.println("Deletando Fornecedor...\n" + f.toString());
         load();
     }
 

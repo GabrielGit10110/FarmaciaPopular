@@ -11,8 +11,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -28,12 +26,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 // import javafx.util.StringConverter;
-import javafx.util.converter.NumberStringConverter;
 // import javafx.util.converter.LocalDateStringConverter;
 // import javafx.scene.control.DatePicker;
 // import javafx.scene.control.CheckBox;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 public class UIFornecedorFX extends Application {
@@ -41,7 +37,7 @@ public class UIFornecedorFX extends Application {
     private Label lblNome = new Label("Nome:");
     private TextField txtNome = new TextField();
 
-    private Label lblCnpj = new Label("Codigo de Barras:");
+    private Label lblCnpj = new Label("CNPJ:");
     private TextField txtCnpj = new TextField();
 
     private BorderPane painelPrincipal = new BorderPane();
@@ -49,11 +45,11 @@ public class UIFornecedorFX extends Application {
     private Label lblEndereco = new Label("Endereco:");
     private TextField txtEndereco = new TextField();
 
-    private Label lblTelefone = new Label("Farmacia Popular?");
-    private TextField txtTelefone = new TextField();
-
     private Label lblEmail = new Label("Email:");
     private TextField txtEmail = new TextField();
+
+    private Label lblTelefone = new Label("Telefone:");
+    private TextField txtTelefone = new TextField();
 
     private Button btnSalvar = new Button("SALVAR");
 
@@ -65,8 +61,8 @@ public class UIFornecedorFX extends Application {
         Bindings.bindBidirectional(this.txtNome.textProperty(), this.controller.nomeProperty());
         Bindings.bindBidirectional(this.txtCnpj.textProperty(), this.controller.cnpjProperty());
         Bindings.bindBidirectional(this.txtEndereco.textProperty(), this.controller.enderecoProperty());
-        Bindings.bindBidirectional(this.txtEmail.valueProperty(), this.controller.dataVencimentoProperty());
-        Bindings.bindBidirectional(this.txtTelefone.selectedProperty(), this.controller.farmPopularProperty());
+        Bindings.bindBidirectional(this.txtEmail.textProperty(), this.controller.emailProperty());
+        Bindings.bindBidirectional(this.txtTelefone.textProperty(), this.controller.telefoneProperty());
 
         GridPane painelTopo = new GridPane();
         painelTopo.setHgap(10);
@@ -105,23 +101,23 @@ public class UIFornecedorFX extends Application {
         );
 
         TableColumn<Fornecedor, String> colCnpj = new TableColumn<>("CNPJ");
-        colCodBarras.setCellValueFactory(
+        colCnpj.setCellValueFactory(
             itemData -> new ReadOnlyStringWrapper(itemData.getValue().getCnpj())
         );
 
         TableColumn<Fornecedor, String> colEndereco = new TableColumn<>("Endereco");
-        colDataEntrega.setCellValueFactory(
+        colEndereco.setCellValueFactory(
             itemData -> new ReadOnlyStringWrapper(itemData.getValue().getEndereco())
         );
 
         TableColumn<Fornecedor, String> colEmail = new TableColumn<>("Email");
-        colDataVencimento.setCellValueFactory(
+        colEmail.setCellValueFactory(
             itemData -> new ReadOnlyStringWrapper(itemData.getValue().getEmail())
         );
         //
 
         TableColumn<Fornecedor, String> colTelefone = new TableColumn<>("Telefone");
-        colFarmPopular.setCellValueFactory(
+        colTelefone.setCellValueFactory(
             itemData -> new ReadOnlyStringWrapper(itemData.getValue().getTelefone())
         );
 
@@ -177,12 +173,6 @@ public class UIFornecedorFX extends Application {
 
         colAcoes.setCellFactory( callback );
 
-        this.painelPrincipal.setOnMouseClicked(event -> {
-            if (!tblFornecedores.isHover()) {
-                tblFornecedores.getSelectionModel().clearSelection();
-                controller.clearFields();
-            }
-        });
 
         this.painelPrincipal.setPadding(new Insets(15));
         this.painelPrincipal.setTop(painelTopo);

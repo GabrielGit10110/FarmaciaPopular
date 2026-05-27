@@ -51,5 +51,19 @@ public class Fornecedor {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    @Override
+    public String toString() {
+        StringBuilder entity = new StringBuilder();
+
+        entity.append("ID no Banco: ").append(this.id).append("\n");
+        entity.append("Fornecedor: ").append(this.nome).append("\n");
+        entity.append("CNPJ: ").append(this.cnpj).append("\n");
+        entity.append("Endereco: ").append(this.endereco).append("\n");
+        entity.append("Telefone: ").append(this.telefone).append("\n");
+        entity.append("Email: ").append(this.email).append("\n");
+
+        return entity.toString();
+    }
 }
 //

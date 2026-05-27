@@ -38,15 +38,15 @@ public class FornecedorImplMariaDB implements FornecedorDAO {
     }
 
     @Override
-    public List<Fornecedor> findByName(String nome) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByName'");
-    }
-
-    @Override
     public Fornecedor findByCnpj(String cnpj) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findByCnpj'");
+    }
+
+    @Override
+    public List<Fornecedor> findByNome(String nome) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByNome'");
     }
 
 }
