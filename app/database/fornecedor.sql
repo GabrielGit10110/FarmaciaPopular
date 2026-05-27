@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS fornecedor (
     cnpj VARCHAR(12),
     endereco VARCHAR(320),
     email VARCHAR(320),
-    telefone VARCHAR(11),
+    telefone VARCHAR(11)
 );
