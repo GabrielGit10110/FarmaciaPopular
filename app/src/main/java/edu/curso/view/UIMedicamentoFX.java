@@ -58,6 +58,7 @@ public class UIMedicamentoFX extends Application {
     private TextField txtValor = new TextField();
 
     private Button btnSalvar = new Button("SALVAR");
+    private Button btnLimpar = new Button("LIMPAR");
 
     private TableView<Medicamento> tblMedicamentos = new TableView<>();
 
@@ -81,6 +82,7 @@ public class UIMedicamentoFX extends Application {
 
         painelTopo.add(this.lblCodBarras, 0, 1);
         painelTopo.add(this.txtCodBarras, 1, 1);
+        painelTopo.add(this.btnLimpar, 2, 1);
 
         painelTopo.add(this.lblDataEntrega, 0, 2);
         painelTopo.add(this.dtDataEntrega, 1, 2);
@@ -103,6 +105,11 @@ public class UIMedicamentoFX extends Application {
                 error.showAndWait();                
             }
         });
+
+        this.btnLimpar.setOnAction(e -> {
+            this.controller.clearFields();
+        });
+
 
         TableColumn<Medicamento, String> colNome = new TableColumn<>("Nome");
         colNome.setCellValueFactory(
@@ -188,12 +195,6 @@ public class UIMedicamentoFX extends Application {
 
         colAcoes.setCellFactory( callback );
 
-        this.painelPrincipal.setOnMouseClicked(event -> {
-            if (!tblMedicamentos.isHover()) {
-                tblMedicamentos.getSelectionModel().clearSelection();
-                controller.clearFields();
-            }
-        });
 
         this.painelPrincipal.setPadding(new Insets(15));
         this.painelPrincipal.setTop(painelTopo);
