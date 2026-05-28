@@ -57,8 +57,11 @@ public class UIMedicamentoFX extends Application {
     private Label lblValor = new Label("Valor:");
     private TextField txtValor = new TextField();
 
+    private Button btnNovo = new Button("NOVO");
     private Button btnSalvar = new Button("SALVAR");
     private Button btnLimpar = new Button("LIMPAR");
+    private Button btnPesquisarPorNome = new Button("PESQUISAR POR NOME");
+    private Button btnPesquisarPorCodBarras = new Button("PESQUISAR POR CODIGO DE BARRAS");
 
     private TableView<Medicamento> tblMedicamentos = new TableView<>();
 
@@ -78,7 +81,8 @@ public class UIMedicamentoFX extends Application {
 
         painelTopo.add(this.lblNome, 0, 0);
         painelTopo.add(this.txtNome, 1, 0);
-        painelTopo.add(this.btnSalvar, 2, 0);
+        painelTopo.add(this.btnNovo, 2, 0);
+        painelTopo.add(this.btnSalvar, 3, 0);
 
         painelTopo.add(this.lblCodBarras, 0, 1);
         painelTopo.add(this.txtCodBarras, 1, 1);
@@ -86,18 +90,43 @@ public class UIMedicamentoFX extends Application {
 
         painelTopo.add(this.lblDataEntrega, 0, 2);
         painelTopo.add(this.dtDataEntrega, 1, 2);
+        painelTopo.add(this.btnPesquisarPorNome, 2, 2);
 
         painelTopo.add(this.lblDataVencimento, 0, 3);
         painelTopo.add(this.dtDataVencimento, 1, 3);
+        painelTopo.add(this.btnPesquisarPorCodBarras, 2, 3);
+
         painelTopo.add(this.lblFarmPopular, 0, 4);
         painelTopo.add(this.chkFarmPopular, 1, 4);
+
         painelTopo.add(this.lblValor, 0, 5);
         painelTopo.add(this.txtValor, 1, 5);
 
-        this.btnSalvar.setOnAction(e -> {
+        this.btnNovo.setOnAction(e -> {
             try {
                 this.controller.save();
                 this.tblMedicamentos.getSelectionModel().clearSelection();
+                Alert success = new Alert(AlertType.INFORMATION);
+                success.setTitle("Novo Medicamento");
+                success.setContentText("Medicamento salvo!");
+                success.showAndWait();
+            } catch (RuntimeException rex) {
+                Alert error = new Alert(AlertType.ERROR);
+                error.setTitle("Erro de input");
+                error.setContentText(rex.getMessage());
+                error.showAndWait();                
+            }
+
+        });
+
+        this.btnSalvar.setOnAction(e -> {
+            try {
+                this.controller.update();
+                this.tblMedicamentos.getSelectionModel().clearSelection();
+                Alert success = new Alert(AlertType.INFORMATION);
+                success.setTitle("Alteracao Concluida");
+                success.setContentText("Medicamento alterado!");
+                success.showAndWait();
             } catch (RuntimeException rex) {
                 Alert error = new Alert(AlertType.ERROR);
                 error.setTitle("Erro de input");
@@ -108,6 +137,34 @@ public class UIMedicamentoFX extends Application {
 
         this.btnLimpar.setOnAction(e -> {
             this.controller.clearFields();
+        });
+
+        this.btnPesquisarPorNome.setOnAction(e -> {
+            String nome = this.controller.getNome();
+
+            if (nome == null || nome.isBlank()) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("ERRO");
+                alert.setContentText("Nome nao pode ser vazio...");
+                alert.showAndWait();
+            } else {
+                this.controller.searchByName();
+            }
+
+
+        });
+
+        this.btnPesquisarPorCodBarras.setOnAction(e -> {
+            String codBarras = this.controller.getCodBarras();
+
+            if (codBarras == null || codBarras.isBlank() || codBarras.length() < 13) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("ERRO");
+                alert.setContentText("Codigo de barras nao pode ser vazio e deve conter 13 caracteres...");
+                alert.showAndWait();
+            } else {
+                this.controller.searchByCode();
+            }
         });
 
 
