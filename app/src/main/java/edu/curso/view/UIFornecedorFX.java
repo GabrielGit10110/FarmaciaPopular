@@ -27,6 +27,8 @@ import java.util.Optional;
 
 public class UIFornecedorFX extends Application {
     private final FornecedorController controller = new FornecedorController(new FornecedorImplMariaDB());
+    private Label lblTitulo = new Label("Medicamentos");
+
     private Label lblNome = new Label("Nome:");
     private TextField txtNome = new TextField();
 
@@ -65,25 +67,28 @@ public class UIFornecedorFX extends Application {
         painelTopo.setHgap(10);
         painelTopo.setVgap(10);
 
-        painelTopo.add(this.lblNome, 0, 0);
-        painelTopo.add(this.txtNome, 1, 0);
-        painelTopo.add(this.btnNovo, 2, 0);
-        painelTopo.add(this.btnAtualizar, 3, 0);
+        this.lblTitulo.setStyle("-fx-font-size: 20px");
+        painelTopo.add(this.lblTitulo, 0, 0);
 
-        painelTopo.add(this.lblCnpj, 0, 1);
-        painelTopo.add(this.txtCnpj, 1, 1);
-        painelTopo.add(this.bntLimpar, 2, 1);
+        painelTopo.add(this.lblNome, 0, 1);
+        painelTopo.add(this.txtNome, 1, 1);
+        painelTopo.add(this.btnNovo, 2, 1);
+        painelTopo.add(this.btnAtualizar, 3, 1);
 
-        painelTopo.add(this.lblEndereco, 0, 2);
-        painelTopo.add(this.txtEndereco, 1, 2);
-        painelTopo.add(this.btnPesquisarPorNome, 2, 2);
+        painelTopo.add(this.lblCnpj, 0, 2);
+        painelTopo.add(this.txtCnpj, 1, 2);
+        painelTopo.add(this.bntLimpar, 2, 2);
 
-        painelTopo.add(this.lblEmail, 0, 3);
-        painelTopo.add(this.txtEmail, 1, 3);
-        painelTopo.add(this.btnPesquisarCnpj, 2, 3);
+        painelTopo.add(this.lblEndereco, 0, 3);
+        painelTopo.add(this.txtEndereco, 1, 3);
+        painelTopo.add(this.btnPesquisarPorNome, 2, 3);
 
-        painelTopo.add(this.lblTelefone, 0, 4);
-        painelTopo.add(this.txtTelefone, 1, 4);
+        painelTopo.add(this.lblEmail, 0, 4);
+        painelTopo.add(this.txtEmail, 1, 4);
+        painelTopo.add(this.btnPesquisarCnpj, 2, 4);
+
+        painelTopo.add(this.lblTelefone, 0, 5);
+        painelTopo.add(this.txtTelefone, 1, 5);
 
         this.btnNovo.setOnAction(e -> {
             try {
