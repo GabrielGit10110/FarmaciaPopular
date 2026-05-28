@@ -27,7 +27,7 @@ import java.util.Optional;
 
 public class UIFornecedorFX extends Application {
     private final FornecedorController controller = new FornecedorController(new FornecedorImplMariaDB());
-    private Label lblTitulo = new Label("Medicamentos");
+    private Label lblTitulo = new Label("Fornecedores");
 
     private Label lblNome = new Label("Nome:");
     private TextField txtNome = new TextField();
