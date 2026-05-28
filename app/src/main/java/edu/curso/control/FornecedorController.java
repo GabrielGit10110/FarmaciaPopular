@@ -1,7 +1,5 @@
 package edu.curso.control;
 
-import java.util.List;
-
 import edu.curso.model.Fornecedor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

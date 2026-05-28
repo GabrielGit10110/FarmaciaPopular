@@ -100,11 +100,31 @@ public class UIFornecedorFX extends Application {
         });
 
         this.btnPesquisarPorNome.setOnAction(e -> {
-            this.controller.findByNome();
+            String nome = this.controller.getNome();
+
+            if (nome == null || nome.isBlank()) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("ERRO");
+                alert.setContentText("Nome nao pode ser vazio...");
+                alert.showAndWait();
+            } else {
+                this.controller.findByNome();
+            }
+
         });
 
         this.btnPesquisarCnpj.setOnAction(e -> {
-            this.controller.findByCnpj();
+            String cnpj = this.controller.getCnpj();
+
+            if (cnpj == null || cnpj.isBlank() || cnpj.length() < 14) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("ERRO");
+                alert.setContentText("CNPJ nao pode ser vazio e deve conter 14 caracteres");
+                alert.showAndWait();
+            } else {
+                this.controller.findByCnpj();
+            }
+
         });
 
         TableColumn<Fornecedor, String> colNome = new TableColumn<>("Nome");
