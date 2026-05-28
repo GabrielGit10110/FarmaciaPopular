@@ -132,7 +132,7 @@ public class FornecedorController {
 
         if (!f.getEmail().matches("[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+")) {
             System.out.println("Email nao pode conter espacos, e so usa os seguintes simbolo '.-_' e numeros");
-            throw new RuntimeException("Email nao pode conter espacos, e so usa os seguintes simbolo '.-_' e numeros");
+            throw new RuntimeException("Email nao pode conter espacos, e deve seguir o seguinte formato: nome.Do_Email123@provedor.com");
         }
 
     }
