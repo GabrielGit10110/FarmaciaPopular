@@ -35,6 +35,7 @@ public class MedicamentoController {
         this.dataVencimento.set(LocalDate.now());
         this.farmPopular.set(false);
         this.valor.set(0);
+        load();
     }
 
     public void fromEntity(Medicamento m) {
@@ -77,6 +78,10 @@ public class MedicamentoController {
             throw new RuntimeException("Codigo de barras nao pode ser vazio");
         }
 
+        if (m.getCodBarras().length() != 13) {
+            throw new RuntimeException("Codigo de barras deve possuir 13 caracteres");
+        }
+
         if (!m.getCodBarras().matches("\\d+")) {
             throw new RuntimeException("Codigo de barras so pode conter numeros");
         }
@@ -86,17 +91,29 @@ public class MedicamentoController {
         }
     }
 
+    public void update() {
+        Medicamento m = toEntity();
+        validate(m);
+
+        Medicamento existe = this.dao.searchById(id.get());
+
+        if (existe == null) {
+            throw new RuntimeException("Medicamento nao existe no banco. Clique em 'NOVO' para adiciona-lo");
+        }
+
+        this.dao.update(id.get(), m);
+        System.out.println("Atualizando Medicamento...\n" + m.toString());
+
+        clearFields();
+        load();
+    }
+
     public void save() {
         Medicamento m = toEntity();
         validate(m);
 
-        if (this.id.get() > 0) {
-            System.out.println("Atualizando Medicamento...\n" + m.toString());
-            this.dao.update(id.get(), m);
-        } else {
-            System.out.println("Salvando Novo Medicamento...\n" + m.toString());
-            this.dao.save(m);
-        }
+        System.out.println("Salvando Novo Medicamento...\n" + m.toString());
+        this.dao.save(m);
 
         clearFields();
         load();
@@ -113,12 +130,12 @@ public class MedicamentoController {
         return this.dao.searchById(id);
     }
 
-    public List<Medicamento> searchByName(String name) {
-        return this.dao.searchByName(name);
+    public void searchByName() {
+        this.lista.setAll(this.dao.searchByName(getNome()));
     }
 
-    public Medicamento searchByCode(String codBarras) {
-        return this.dao.searchByCode(codBarras);
+    public void searchByCode() {
+        this.lista.setAll(this.dao.searchByCode(getCodBarras()));
     }
 
     public void load() {
