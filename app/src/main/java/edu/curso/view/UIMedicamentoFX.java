@@ -38,6 +38,8 @@ import java.util.Optional;
 
 public class UIMedicamentoFX extends Application {
     private final MedicamentoController controller = new MedicamentoController(new MedicamentoImplMariaDB());
+    private Label lblTitulo = new Label("Medicamentos");
+
     private Label lblNome = new Label("Nome:");
     private TextField txtNome = new TextField();
 
@@ -79,28 +81,31 @@ public class UIMedicamentoFX extends Application {
         painelTopo.setHgap(10);
         painelTopo.setVgap(10);
 
-        painelTopo.add(this.lblNome, 0, 0);
-        painelTopo.add(this.txtNome, 1, 0);
-        painelTopo.add(this.btnNovo, 2, 0);
-        painelTopo.add(this.btnAtualizar, 3, 0);
+        this.lblTitulo.setStyle("-fx-font-size: 20px");
+        painelTopo.add(this.lblTitulo, 0, 0);
 
-        painelTopo.add(this.lblCodBarras, 0, 1);
-        painelTopo.add(this.txtCodBarras, 1, 1);
-        painelTopo.add(this.btnLimpar, 2, 1);
+        painelTopo.add(this.lblNome, 0, 1);
+        painelTopo.add(this.txtNome, 1, 1);
+        painelTopo.add(this.btnNovo, 2, 1);
+        painelTopo.add(this.btnAtualizar, 3, 1);
 
-        painelTopo.add(this.lblDataEntrega, 0, 2);
-        painelTopo.add(this.dtDataEntrega, 1, 2);
-        painelTopo.add(this.btnPesquisarPorNome, 2, 2);
+        painelTopo.add(this.lblCodBarras, 0, 2);
+        painelTopo.add(this.txtCodBarras, 1, 2);
+        painelTopo.add(this.btnLimpar, 2, 2);
 
-        painelTopo.add(this.lblDataVencimento, 0, 3);
-        painelTopo.add(this.dtDataVencimento, 1, 3);
-        painelTopo.add(this.btnPesquisarPorCodBarras, 2, 3);
+        painelTopo.add(this.lblDataEntrega, 0, 3);
+        painelTopo.add(this.dtDataEntrega, 1, 3);
+        painelTopo.add(this.btnPesquisarPorNome, 2, 3);
 
-        painelTopo.add(this.lblFarmPopular, 0, 4);
-        painelTopo.add(this.chkFarmPopular, 1, 4);
+        painelTopo.add(this.lblDataVencimento, 0, 4);
+        painelTopo.add(this.dtDataVencimento, 1, 4);
+        painelTopo.add(this.btnPesquisarPorCodBarras, 2, 4);
 
-        painelTopo.add(this.lblValor, 0, 5);
-        painelTopo.add(this.txtValor, 1, 5);
+        painelTopo.add(this.lblFarmPopular, 0, 5);
+        painelTopo.add(this.chkFarmPopular, 1, 5);
+
+        painelTopo.add(this.lblValor, 0, 6);
+        painelTopo.add(this.txtValor, 1, 6);
 
         this.btnNovo.setOnAction(e -> {
             try {
