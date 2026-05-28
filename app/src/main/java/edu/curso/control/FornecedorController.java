@@ -1,7 +1,5 @@
 package edu.curso.control;
 
-import java.util.List;
-
 import edu.curso.model.Fornecedor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,6 +30,8 @@ public class FornecedorController {
         this.endereco.set("");
         this.telefone.set("");
         this.email.set("");
+
+        load();
     }
 
     public void fromEntity(Fornecedor f) {
@@ -157,19 +157,20 @@ public class FornecedorController {
         Fornecedor f = this.lista.get(indice);
         this.dao.delete(f);
         System.out.println("Deletando Fornecedor...\n" + f.toString());
+        clearFields();
         load();
     }
 
-    public Fornecedor findById(long id) {
-        return this.dao.findById(id);
+    public Fornecedor findById() {
+        return this.dao.findById(getId());
     }
 
-    public List<Fornecedor> findByNome(String nome) {
-        return this.dao.findByNome(nome);
+    public void findByNome() {
+        this.lista.setAll(this.dao.findByNome(getNome()));
     }
 
-    public Fornecedor findByCnpj(String cnpj) {
-        return this.dao.findByCnpj(cnpj);
+    public void findByCnpj() {
+        this.lista.setAll(this.dao.findByCnpj(getCnpj()));
     }
 
     public void load() {

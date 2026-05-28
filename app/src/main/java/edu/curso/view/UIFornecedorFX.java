@@ -46,6 +46,8 @@ public class UIFornecedorFX extends Application {
 
     private Button btnSalvar = new Button("SALVAR");
     private Button bntLimpar = new Button("LIMPAR");
+    private Button btnPesquisarPorNome = new Button("PESQUISAR POR NOME");
+    private Button btnPesquisarCnpj = new Button("PESQUISAR POR CNPJ");
 
     private TableView<Fornecedor> tblFornecedores = new TableView<>();
 
@@ -72,9 +74,12 @@ public class UIFornecedorFX extends Application {
 
         painelTopo.add(this.lblEndereco, 0, 2);
         painelTopo.add(this.txtEndereco, 1, 2);
+        painelTopo.add(this.btnPesquisarPorNome, 2, 2);
 
         painelTopo.add(this.lblEmail, 0, 3);
         painelTopo.add(this.txtEmail, 1, 3);
+        painelTopo.add(this.btnPesquisarCnpj, 2, 3);
+
         painelTopo.add(this.lblTelefone, 0, 4);
         painelTopo.add(this.txtTelefone, 1, 4);
 
@@ -92,6 +97,34 @@ public class UIFornecedorFX extends Application {
 
         this.bntLimpar.setOnAction(e -> {
             this.controller.clearFields();
+        });
+
+        this.btnPesquisarPorNome.setOnAction(e -> {
+            String nome = this.controller.getNome();
+
+            if (nome == null || nome.isBlank()) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("ERRO");
+                alert.setContentText("Nome nao pode ser vazio...");
+                alert.showAndWait();
+            } else {
+                this.controller.findByNome();
+            }
+
+        });
+
+        this.btnPesquisarCnpj.setOnAction(e -> {
+            String cnpj = this.controller.getCnpj();
+
+            if (cnpj == null || cnpj.isBlank() || cnpj.length() < 14) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("ERRO");
+                alert.setContentText("CNPJ nao pode ser vazio e deve conter 14 caracteres");
+                alert.showAndWait();
+            } else {
+                this.controller.findByCnpj();
+            }
+
         });
 
         TableColumn<Fornecedor, String> colNome = new TableColumn<>("Nome");
