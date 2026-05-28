@@ -149,7 +149,7 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
 
     @Override
     public Medicamento searchById(long id) {
-        Medicamento m = new Medicamento();
+        Medicamento m = null;
 
         try {
             String sql = "SELECT * FROM medicamento "+
@@ -158,8 +158,12 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
             PreparedStatement stm = con.prepareStatement(sql);
             stm.setLong(1, id);
             ResultSet rs = stm.executeQuery();
+
             System.out.println("Medicamento encontrado no banco...");
-            while (rs.next()) {
+
+            if (rs.next()) {
+                m = new Medicamento();
+
                 long idMedicamento = rs.getLong("id");
                 String nome =  rs.getString("nome");
                 String codBarras = rs.getString("codigo_de_barras");

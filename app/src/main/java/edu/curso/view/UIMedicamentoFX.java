@@ -58,7 +58,7 @@ public class UIMedicamentoFX extends Application {
     private TextField txtValor = new TextField();
 
     private Button btnNovo = new Button("NOVO");
-    private Button btnSalvar = new Button("SALVAR");
+    private Button btnAtualizar = new Button("ATUALIZAR");
     private Button btnLimpar = new Button("LIMPAR");
     private Button btnPesquisarPorNome = new Button("PESQUISAR POR NOME");
     private Button btnPesquisarPorCodBarras = new Button("PESQUISAR POR CODIGO DE BARRAS");
@@ -82,7 +82,7 @@ public class UIMedicamentoFX extends Application {
         painelTopo.add(this.lblNome, 0, 0);
         painelTopo.add(this.txtNome, 1, 0);
         painelTopo.add(this.btnNovo, 2, 0);
-        painelTopo.add(this.btnSalvar, 3, 0);
+        painelTopo.add(this.btnAtualizar, 3, 0);
 
         painelTopo.add(this.lblCodBarras, 0, 1);
         painelTopo.add(this.txtCodBarras, 1, 1);
@@ -119,7 +119,7 @@ public class UIMedicamentoFX extends Application {
 
         });
 
-        this.btnSalvar.setOnAction(e -> {
+        this.btnAtualizar.setOnAction(e -> {
             try {
                 this.controller.update();
                 this.tblMedicamentos.getSelectionModel().clearSelection();

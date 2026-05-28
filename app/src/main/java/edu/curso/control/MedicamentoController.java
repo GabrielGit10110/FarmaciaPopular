@@ -78,7 +78,7 @@ public class MedicamentoController {
             throw new RuntimeException("Codigo de barras nao pode ser vazio");
         }
 
-        if (m.getCodBarras().length() < 13) {
+        if (m.getCodBarras().length() != 13) {
             throw new RuntimeException("Codigo de barras deve possuir 13 caracteres");
         }
 
@@ -95,8 +95,14 @@ public class MedicamentoController {
         Medicamento m = toEntity();
         validate(m);
 
-        System.out.println("Atualizando Medicamento...\n" + m.toString());
+        Medicamento existe = this.dao.searchById(id.get());
+
+        if (existe == null) {
+            throw new RuntimeException("Medicamento nao existe no banco. Clique em 'NOVO' para adiciona-lo");
+        }
+
         this.dao.update(id.get(), m);
+        System.out.println("Atualizando Medicamento...\n" + m.toString());
 
         clearFields();
         load();
