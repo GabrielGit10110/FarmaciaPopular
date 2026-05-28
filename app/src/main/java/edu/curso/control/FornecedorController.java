@@ -64,7 +64,7 @@ public class FornecedorController {
             throw new RuntimeException("Nome nao pode ser vazio");
         }
 
-        if (f.getNome() != null && f.getNome().length() > 10) {
+        if (f.getNome() != null && f.getNome().length() > 100) {
             System.out.println("Nome nao pode ter mais de 100 caracteres");
             throw new RuntimeException("Nome nao pode ter mais de 100 caracteres");
         }
@@ -137,17 +137,29 @@ public class FornecedorController {
 
     }
 
+    public void update() {
+        Fornecedor f = toEntity();
+        validate(f);
+
+        Fornecedor existe = this.dao.findById(id.get());
+
+        if (existe == null) {
+            throw new RuntimeException("Fornecedor nao existe no banco. Clique em NOVO para criar.");
+        }
+
+        this.dao.update(id.get(), f);
+        System.out.println("Atualizando Fornecedor...\n" + f.toString());
+
+        clearFields();
+        load();
+    }
+
     public void save() {
         Fornecedor f = toEntity();
         validate(f);
 
-        if (this.id.get() > 0) {
-            this.dao.update(id.get(), f);
-            System.out.println("Atualizando Fornecedor...\n" + f.toString());
-        } else {
-            this.dao.save(f);
-            System.out.println("Salvando Novo Fornecedor...\n" + f.toString());
-        }
+        this.dao.save(f);
+        System.out.println("Salvando Novo Fornecedor...\n" + f.toString());
 
         clearFields();
         load();
