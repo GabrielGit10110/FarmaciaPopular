@@ -44,7 +44,8 @@ public class UIFornecedorFX extends Application {
     private Label lblTelefone = new Label("Telefone:");
     private TextField txtTelefone = new TextField();
 
-    private Button btnSalvar = new Button("SALVAR");
+    private Button btnNovo = new Button("NOVO");
+    private Button btnAtualizar = new Button("ATUALIZAR");
     private Button bntLimpar = new Button("LIMPAR");
     private Button btnPesquisarPorNome = new Button("PESQUISAR POR NOME");
     private Button btnPesquisarCnpj = new Button("PESQUISAR POR CNPJ");
@@ -66,7 +67,8 @@ public class UIFornecedorFX extends Application {
 
         painelTopo.add(this.lblNome, 0, 0);
         painelTopo.add(this.txtNome, 1, 0);
-        painelTopo.add(this.btnSalvar, 2, 0);
+        painelTopo.add(this.btnNovo, 2, 0);
+        painelTopo.add(this.btnAtualizar, 3, 0);
 
         painelTopo.add(this.lblCnpj, 0, 1);
         painelTopo.add(this.txtCnpj, 1, 1);
@@ -83,10 +85,31 @@ public class UIFornecedorFX extends Application {
         painelTopo.add(this.lblTelefone, 0, 4);
         painelTopo.add(this.txtTelefone, 1, 4);
 
-        this.btnSalvar.setOnAction(e -> {
+        this.btnNovo.setOnAction(e -> {
             try {
                 this.controller.save();
                 this.tblFornecedores.getSelectionModel().clearSelection();
+                Alert success = new Alert(AlertType.INFORMATION);
+                success.setTitle("Novo Fornecedor");
+                success.setContentText("Fornecedor salvo!");
+                success.showAndWait();
+            } catch (RuntimeException rex) {
+                Alert error = new Alert(AlertType.ERROR);
+                error.setTitle("Erro de input");
+                error.setContentText(rex.getMessage());
+                error.showAndWait();                
+            }
+
+        });
+
+        this.btnAtualizar.setOnAction(e -> {
+            try {
+                this.controller.update();
+                this.tblFornecedores.getSelectionModel().clearSelection();
+                Alert success = new Alert(AlertType.INFORMATION);
+                success.setTitle("Alteracao Concluida");
+                success.setContentText("Fornecedor teve dados alterados!");
+                success.showAndWait();
             } catch (RuntimeException rex) {
                 Alert error = new Alert(AlertType.ERROR);
                 error.setTitle("Erro de input");
@@ -94,6 +117,7 @@ public class UIFornecedorFX extends Application {
                 error.showAndWait();                
             }
         });
+
 
         this.bntLimpar.setOnAction(e -> {
             this.controller.clearFields();
