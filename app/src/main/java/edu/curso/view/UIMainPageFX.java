@@ -59,7 +59,7 @@ public class UIMainPageFX extends Application {
 
         // Menu
         this.mnuArquivo.getItems().addAll(this.mnuInicialItem, this.mnuSairItem);
-        this.mnuGestao.getItems().addAll(this.mnuMedicamentosItem, this.mnuFornecedoresItem);
+        this.mnuGestao.getItems().addAll(this.mnuMedicamentosItem, this.mnuFornecedoresItem); 
 
         this.menuBar.getMenus().addAll(this.mnuArquivo, this.mnuGestao, this.mnuAjuda);
         this.painelPrincipal.setTop(this.menuBar);
@@ -69,7 +69,7 @@ public class UIMainPageFX extends Application {
         this.lblDescricao.setStyle("-fx-font-size: 12px;");
 
         // Botões lado a lado
-        this.boxBotoes.getChildren().addAll(btnMedicamento, btnFornecedor);
+        this.boxBotoes.getChildren().addAll(this.btnMedicamento, this.btnFornecedor);
         this.boxBotoes.setSpacing(20);
         this.boxBotoes.setAlignment(Pos.CENTER);
 
@@ -97,7 +97,6 @@ public class UIMainPageFX extends Application {
             }
         });
 
-        // Ações (troca de telas)
         this.mnuMedicamentosItem.setOnAction(e -> {
             this.painelPrincipal.setCenter(this.uiMedicamento);
         });

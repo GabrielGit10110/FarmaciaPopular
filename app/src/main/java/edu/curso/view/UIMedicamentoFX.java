@@ -2,13 +2,10 @@ package edu.curso.view;
 
 import edu.curso.control.MedicamentoController;
 import edu.curso.infraestructure.MedicamentoImplMariaDB;
-// import edu.curso.infraestructure.MedicamentoImplMemory;
 import edu.curso.model.Medicamento;
-import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -19,20 +16,12 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-// import javafx.scene.image.Image;
-// import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-// import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-// import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
-// import javafx.util.converter.LocalDateStringConverter;
-// import javafx.scene.control.DatePicker;
-// import javafx.scene.control.CheckBox;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -60,7 +49,6 @@ public class UIMedicamentoFX implements UI {
     private Label lblValor = new Label("Valor:");
     private TextField txtValor = new TextField();
 
-    private Button btnVoltar = new Button("VOLTAR");
     private Button btnNovo = new Button("NOVO");
     private Button btnAtualizar = new Button("ATUALIZAR");
     private Button btnLimpar = new Button("LIMPAR");
@@ -263,9 +251,6 @@ public class UIMedicamentoFX implements UI {
         this.painelPrincipal.setTop(painelTopo);
         BorderPane.setMargin(painelTopo, new Insets(15));
         this.painelPrincipal.setCenter(this.tblMedicamentos);
-
-        this.painelPrincipal.setBottom(this.btnVoltar);
-        BorderPane.setMargin(this.btnVoltar, new Insets(15));
 
         return this.painelPrincipal;
     }
