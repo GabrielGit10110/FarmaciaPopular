@@ -24,8 +24,8 @@ public class UIMainPageFX extends Application {
 
     private BorderPane painelPrincipal = new BorderPane();
 
-    // Telas a
-    private Pane uiMedicamento = new UIMedicamentoFX().render();
+    // Telas
+    // private Pane uiMedicamento = new UIMedicamentoFX().render();
     private Pane uiFornecedor = new UIFornecedorFX().render();
 
     // Menu
@@ -37,7 +37,7 @@ public class UIMainPageFX extends Application {
     private MenuItem mnuInicialItem = new MenuItem("Inicial");
     private MenuItem mnuSairItem = new MenuItem("Sair");
 
-    private MenuItem mnuMedicamentosItem = new MenuItem("Medicamentos");
+    // private MenuItem mnuMedicamentosItem = new MenuItem("Medicamentos");
     private MenuItem mnuFornecedoresItem = new MenuItem("Fornecedores");
 
     // Tela inicial
@@ -49,7 +49,7 @@ public class UIMainPageFX extends Application {
         "(Clique em um dos botoes abaixo para cadastrar, remover ou atualizar informacoes)"
     );
 
-    private Button btnMedicamento = new Button("Medicamentos");
+    // private Button btnMedicamento = new Button("Medicamentos");
     private Button btnFornecedor = new Button("Fornecedores");
 
     @Override
@@ -59,7 +59,7 @@ public class UIMainPageFX extends Application {
 
         // Menu
         this.mnuArquivo.getItems().addAll(this.mnuInicialItem, this.mnuSairItem);
-        this.mnuGestao.getItems().addAll(this.mnuMedicamentosItem, this.mnuFornecedoresItem); 
+        this.mnuGestao.getItems().addAll(this.mnuFornecedoresItem); 
 
         this.menuBar.getMenus().addAll(this.mnuArquivo, this.mnuGestao, this.mnuAjuda);
         this.painelPrincipal.setTop(this.menuBar);
@@ -69,6 +69,7 @@ public class UIMainPageFX extends Application {
         this.lblDescricao.setStyle("-fx-font-size: 12px;");
 
         // Botões lado a lado
+        this.boxBotoes.getChildren().addAll(btnFornecedor);
         this.boxBotoes.getChildren().addAll(this.btnMedicamento, this.btnFornecedor);
         this.boxBotoes.setSpacing(20);
         this.boxBotoes.setAlignment(Pos.CENTER);
@@ -97,13 +98,14 @@ public class UIMainPageFX extends Application {
             }
         });
 
-        this.mnuMedicamentosItem.setOnAction(e -> {
-            this.painelPrincipal.setCenter(this.uiMedicamento);
-        });
+        // Ações (troca de telas)
+        // this.mnuMedicamentosItem.setOnAction(e -> {
+        //     this.painelPrincipal.setCenter(this.uiMedicamento);
+        // });
 
-        this.btnMedicamento.setOnAction(e -> {
-            this.painelPrincipal.setCenter(this.uiMedicamento);
-        });
+        // this.btnMedicamento.setOnAction(e -> {
+        //     this.painelPrincipal.setCenter(this.uiMedicamento);
+        // });
 
         this.mnuFornecedoresItem.setOnAction(e -> {
             this.painelPrincipal.setCenter(this.uiFornecedor);
