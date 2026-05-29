@@ -70,7 +70,6 @@ public class UIMainPageFX extends Application {
 
         // Botões lado a lado
         this.boxBotoes.getChildren().addAll(btnFornecedor);
-        this.boxBotoes.getChildren().addAll(this.btnMedicamento, this.btnFornecedor);
         this.boxBotoes.setSpacing(20);
         this.boxBotoes.setAlignment(Pos.CENTER);
 
