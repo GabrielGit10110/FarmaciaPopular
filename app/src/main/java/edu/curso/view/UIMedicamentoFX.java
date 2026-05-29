@@ -268,6 +268,5 @@ public class UIMedicamentoFX implements UI {
         BorderPane.setMargin(this.btnVoltar, new Insets(15));
 
         return this.painelPrincipal;
-
     }
 }
