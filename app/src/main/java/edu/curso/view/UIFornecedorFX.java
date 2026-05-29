@@ -2,7 +2,6 @@ package edu.curso.view;
 
 import edu.curso.control.FornecedorController;
 import edu.curso.infraestructure.FornecedorImplMariaDB;
-// import edu.curso.infraestructure.FornecedorImplMemory;
 import edu.curso.model.Fornecedor;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyStringWrapper;
