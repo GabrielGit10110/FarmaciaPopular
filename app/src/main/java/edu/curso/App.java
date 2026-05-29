@@ -3,11 +3,11 @@
  */
 package edu.curso;
 
-import edu.curso.view.UIMedicamentoFX;
+import edu.curso.view.UIMainPageFX;
 import javafx.application.Application;
 
 public class App {
     public static void main(String[] args) {
-        Application.launch(UIMedicamentoFX.class, args);
+        Application.launch(UIMainPageFX.class, args);
     }
 }
