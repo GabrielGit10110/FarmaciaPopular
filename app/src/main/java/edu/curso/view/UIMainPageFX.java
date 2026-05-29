@@ -24,7 +24,7 @@ public class UIMainPageFX extends Application {
 
     private BorderPane painelPrincipal = new BorderPane();
 
-    // Telas
+    // Telas a
     private Pane uiMedicamento = new UIMedicamentoFX().render();
     private Pane uiFornecedor = new UIFornecedorFX().render();
 
