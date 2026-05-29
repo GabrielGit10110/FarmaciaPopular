@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 // import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -68,7 +69,8 @@ public class UIMedicamentoFX implements UI {
 
     private TableView<Medicamento> tblMedicamentos = new TableView<>();
 
-    public Pane render(Stage stage) {
+    @Override
+    public Pane render() {
         Bindings.bindBidirectional(this.txtNome.textProperty(), this.controller.nomeProperty());
         Bindings.bindBidirectional(this.txtCodBarras.textProperty(), this.controller.codBarrasProperty());
         Bindings.bindBidirectional(this.dtDataEntrega.valueProperty(), this.controller.dataEntregaProperty());
