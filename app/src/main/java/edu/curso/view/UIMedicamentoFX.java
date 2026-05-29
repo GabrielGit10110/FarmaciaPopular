@@ -36,7 +36,7 @@ import javafx.util.converter.NumberStringConverter;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class UIMedicamentoFX extends Application {
+public class UIMedicamentoFX implements UI {
     private final MedicamentoController controller = new MedicamentoController(new MedicamentoImplMariaDB());
     private Label lblTitulo = new Label("Medicamentos");
 
@@ -68,9 +68,7 @@ public class UIMedicamentoFX extends Application {
 
     private TableView<Medicamento> tblMedicamentos = new TableView<>();
 
-    public void start(Stage stage) throws Exception {
-        Scene scn = new Scene(this.painelPrincipal, 800, 600);
-
+    public Pane render(Stage stage) {
         Bindings.bindBidirectional(this.txtNome.textProperty(), this.controller.nomeProperty());
         Bindings.bindBidirectional(this.txtCodBarras.textProperty(), this.controller.codBarrasProperty());
         Bindings.bindBidirectional(this.dtDataEntrega.valueProperty(), this.controller.dataEntregaProperty());
@@ -267,7 +265,6 @@ public class UIMedicamentoFX extends Application {
         this.painelPrincipal.setBottom(this.btnVoltar);
         BorderPane.setMargin(this.btnVoltar, new Insets(15));
 
-        stage.setScene(scn);
-        stage.show();
+        return this.painelPrincipal;
     }
 }
