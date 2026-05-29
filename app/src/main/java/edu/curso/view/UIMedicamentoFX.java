@@ -24,7 +24,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 // import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -37,7 +36,7 @@ import javafx.util.converter.NumberStringConverter;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class UIMedicamentoFX implements UI {
+public class UIMedicamentoFX extends Application {
     private final MedicamentoController controller = new MedicamentoController(new MedicamentoImplMariaDB());
     private Label lblTitulo = new Label("Medicamentos");
 
@@ -69,8 +68,9 @@ public class UIMedicamentoFX implements UI {
 
     private TableView<Medicamento> tblMedicamentos = new TableView<>();
 
-    @Override
-    public Pane render() {
+    public void start(Stage stage) throws Exception {
+        Scene scn = new Scene(this.painelPrincipal, 800, 600);
+
         Bindings.bindBidirectional(this.txtNome.textProperty(), this.controller.nomeProperty());
         Bindings.bindBidirectional(this.txtCodBarras.textProperty(), this.controller.codBarrasProperty());
         Bindings.bindBidirectional(this.dtDataEntrega.valueProperty(), this.controller.dataEntregaProperty());
@@ -267,6 +267,7 @@ public class UIMedicamentoFX implements UI {
         this.painelPrincipal.setBottom(this.btnVoltar);
         BorderPane.setMargin(this.btnVoltar, new Insets(15));
 
-        return this.painelPrincipal;
+        stage.setScene(scn);
+        stage.show();
     }
 }
