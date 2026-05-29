@@ -26,7 +26,7 @@ public class UIMainPageFX extends Application {
 
     // Telas
     private Pane uiMedicamento = new UIMedicamentoFX().render();
-    private Pane uiFornecedor = new UIFornecedorFX().render();
+    // private Pane uiFornecedor = new UIFornecedorFX().render();
 
     // Menu
     private MenuBar menuBar = new MenuBar();
@@ -38,7 +38,7 @@ public class UIMainPageFX extends Application {
     private MenuItem mnuSairItem = new MenuItem("Sair");
 
     private MenuItem mnuMedicamentosItem = new MenuItem("Medicamentos");
-    private MenuItem mnuFornecedoresItem = new MenuItem("Fornecedores");
+    // private MenuItem mnuFornecedoresItem = new MenuItem("Fornecedores");
 
     // Tela inicial
     private VBox layoutInicial = new VBox();
@@ -50,7 +50,7 @@ public class UIMainPageFX extends Application {
     );
 
     private Button btnMedicamento = new Button("Medicamentos");
-    private Button btnFornecedor = new Button("Fornecedores");
+    // private Button btnFornecedor = new Button("Fornecedores");
 
     @Override
     public void start(Stage primaryStage) {
@@ -59,7 +59,7 @@ public class UIMainPageFX extends Application {
 
         // Menu
         this.mnuArquivo.getItems().addAll(this.mnuInicialItem, this.mnuSairItem);
-        this.mnuGestao.getItems().addAll(this.mnuMedicamentosItem, this.mnuFornecedoresItem);
+        this.mnuGestao.getItems().addAll(this.mnuMedicamentosItem); 
 
         this.menuBar.getMenus().addAll(this.mnuArquivo, this.mnuGestao, this.mnuAjuda);
         this.painelPrincipal.setTop(this.menuBar);
@@ -69,7 +69,7 @@ public class UIMainPageFX extends Application {
         this.lblDescricao.setStyle("-fx-font-size: 12px;");
 
         // Botões lado a lado
-        this.boxBotoes.getChildren().addAll(btnMedicamento, btnFornecedor);
+        this.boxBotoes.getChildren().addAll(btnMedicamento);
         this.boxBotoes.setSpacing(20);
         this.boxBotoes.setAlignment(Pos.CENTER);
 
@@ -106,13 +106,13 @@ public class UIMainPageFX extends Application {
             this.painelPrincipal.setCenter(this.uiMedicamento);
         });
 
-        this.mnuFornecedoresItem.setOnAction(e -> {
-            this.painelPrincipal.setCenter(this.uiFornecedor);
-        });
+        // this.mnuFornecedoresItem.setOnAction(e -> {
+        //     this.painelPrincipal.setCenter(this.uiFornecedor);
+        // });
 
-        this.btnFornecedor.setOnAction(e -> {
-            this.painelPrincipal.setCenter(this.uiFornecedor);
-        });
+        // this.btnFornecedor.setOnAction(e -> {
+        //     this.painelPrincipal.setCenter(this.uiFornecedor);
+        // });
 
         primaryStage.setScene(scn);
         primaryStage.setTitle("Farmacia Popular");
