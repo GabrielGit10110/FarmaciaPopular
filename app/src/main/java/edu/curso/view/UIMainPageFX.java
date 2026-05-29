@@ -59,7 +59,7 @@ public class UIMainPageFX extends Application {
 
         // Menu
         this.mnuArquivo.getItems().addAll(this.mnuInicialItem, this.mnuSairItem);
-        this.mnuGestao.getItems().addAll(this.mnuMedicamentosItem, this.mnuFornecedoresItem);
+        this.mnuGestao.getItems().addAll(this.mnuMedicamentosItem, this.mnuFornecedoresItem); 
 
         this.menuBar.getMenus().addAll(this.mnuArquivo, this.mnuGestao, this.mnuAjuda);
         this.painelPrincipal.setTop(this.menuBar);
