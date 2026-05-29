@@ -49,7 +49,6 @@ public class UIMedicamentoFX implements UI {
     private Label lblValor = new Label("Valor:");
     private TextField txtValor = new TextField();
 
-    private Button btnVoltar = new Button("VOLTAR");
     private Button btnNovo = new Button("NOVO");
     private Button btnAtualizar = new Button("ATUALIZAR");
     private Button btnLimpar = new Button("LIMPAR");
@@ -252,9 +251,6 @@ public class UIMedicamentoFX implements UI {
         this.painelPrincipal.setTop(painelTopo);
         BorderPane.setMargin(painelTopo, new Insets(15));
         this.painelPrincipal.setCenter(this.tblMedicamentos);
-
-        this.painelPrincipal.setBottom(this.btnVoltar);
-        BorderPane.setMargin(this.btnVoltar, new Insets(15));
 
         return this.painelPrincipal;
     }
