@@ -4,11 +4,9 @@ import edu.curso.control.FornecedorController;
 import edu.curso.infraestructure.FornecedorImplMariaDB;
 // import edu.curso.infraestructure.FornecedorImplMemory;
 import edu.curso.model.Fornecedor;
-import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -20,12 +18,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 
 import java.util.Optional;
 
-public class UIFornecedorFX extends Application {
+public class UIFornecedorFX implements UI {
     private final FornecedorController controller = new FornecedorController(new FornecedorImplMariaDB());
     private Label lblTitulo = new Label("Fornecedores");
 
@@ -54,9 +52,8 @@ public class UIFornecedorFX extends Application {
 
     private TableView<Fornecedor> tblFornecedores = new TableView<>();
 
-    public void start(Stage stage) throws Exception {
-        Scene scn = new Scene(this.painelPrincipal, 800, 600);
-
+    @Override
+    public Pane render() {
         Bindings.bindBidirectional(this.txtNome.textProperty(), this.controller.nomeProperty());
         Bindings.bindBidirectional(this.txtCnpj.textProperty(), this.controller.cnpjProperty());
         Bindings.bindBidirectional(this.txtEndereco.textProperty(), this.controller.enderecoProperty());
@@ -240,7 +237,6 @@ public class UIFornecedorFX extends Application {
         BorderPane.setMargin(painelTopo, new Insets(15));
         this.painelPrincipal.setCenter(this.tblFornecedores);
 
-        stage.setScene(scn);
-        stage.show();
+        return this.painelPrincipal;
     }
 }
