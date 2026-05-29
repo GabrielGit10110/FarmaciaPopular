@@ -118,7 +118,7 @@ public class UIFornecedorFX implements UI {
                 error.showAndWait();                
             }
         });
-
+//
 
         this.bntLimpar.setOnAction(e -> {
             this.controller.clearFields();
