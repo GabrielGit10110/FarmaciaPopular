@@ -51,6 +51,8 @@ public class UIMainPageFX extends Application {
 
     private Button btnMedicamento = new Button("Medicamentos");
     private Button btnFornecedor = new Button("Fornecedores");
+    private Button btnFuncionario = new Button("Funcionarios");
+    private Button btnClientes = new Button("Clientes");
 
     @Override
     public void start(Stage primaryStage) {
@@ -69,7 +71,7 @@ public class UIMainPageFX extends Application {
         this.lblDescricao.setStyle("-fx-font-size: 12px;");
 
         // Botões lado a lado
-        this.boxBotoes.getChildren().addAll(btnMedicamento, btnFornecedor);
+        this.boxBotoes.getChildren().addAll(btnMedicamento, btnFornecedor, btnFuncionario, btnClientes);
         this.boxBotoes.setSpacing(20);
         this.boxBotoes.setAlignment(Pos.CENTER);
 
@@ -119,4 +121,3 @@ public class UIMainPageFX extends Application {
         primaryStage.show();
     }
 }
-
