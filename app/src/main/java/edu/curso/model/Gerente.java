@@ -1,4 +1,4 @@
-package edu.curso.model;
+package java.edu.curso.model;
 
 public class Gerente {
 
