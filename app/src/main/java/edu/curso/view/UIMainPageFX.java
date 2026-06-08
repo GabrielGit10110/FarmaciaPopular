@@ -24,10 +24,10 @@ public class UIMainPageFX extends Application {
     private BorderPane painelPrincipal = new BorderPane();
 
     // Telas
-    // private Pane uiMedicamento = new UIMedicamentoFX().render();
-    // private Pane uiFornecedor = new UIFornecedorFX().render();
+    private Pane uiMedicamento = new UIMedicamentoFX().render();
+    private Pane uiFornecedor = new UIFornecedorFX().render();
     private Pane uiFuncionario = new UIFuncionarioFX().render();
-    // private Pane uiCliente = new UIClienteFX().render();
+    private Pane uiCliente = new UIClienteFX().render();
 
     // Menu
     private MenuBar menuBar = new MenuBar();
@@ -103,21 +103,21 @@ public class UIMainPageFX extends Application {
         });
 
         // Ações (troca de telas)
-        // this.mnuMedicamentosItem.setOnAction(e -> {
-        //     this.painelPrincipal.setCenter(this.uiMedicamento);
-        // });
+        this.mnuMedicamentosItem.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiMedicamento);
+        });
 
-        // this.btnMedicamento.setOnAction(e -> {
-        //     this.painelPrincipal.setCenter(this.uiMedicamento);
-        // });
+        this.btnMedicamento.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiMedicamento);
+        });
 
-        // this.mnuFornecedoresItem.setOnAction(e -> {
-        //     this.painelPrincipal.setCenter(this.uiFornecedor);
-        // });
+        this.mnuFornecedoresItem.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiFornecedor);
+        });
 
-        // this.btnFornecedor.setOnAction(e -> {
-        //     this.painelPrincipal.setCenter(this.uiFornecedor);
-        // });
+        this.btnFornecedor.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiFornecedor);
+        });
 
         this.mnuFuncionarioItem.setOnAction(e -> {
             this.painelPrincipal.setCenter(this.uiFuncionario);
@@ -127,13 +127,13 @@ public class UIMainPageFX extends Application {
             this.painelPrincipal.setCenter(this.uiFuncionario);
         });
 
-        // this.mnuClientesItem.setOnAction(e -> {
-        //     this.painelPrincipal.setCenter(this.uiCliente);
-        // });
+        this.mnuClientesItem.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiCliente);
+        });
 
-        // this.btnClientes.setOnAction(e -> {
-        //     this.painelPrincipal.setCenter(this.uiCliente);
-        // });
+        this.btnClientes.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiCliente);
+        });
 
 
         primaryStage.setScene(scn);
