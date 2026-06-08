@@ -1,6 +1,5 @@
 package edu.curso.view;
 
-import java.lang.ProcessBuilder.Redirect.Type;
 import java.util.Optional;
 
 import javafx.application.Application;
@@ -26,7 +25,9 @@ public class UIMainPageFX extends Application {
 
     // Telas
     private Pane uiMedicamento = new UIMedicamentoFX().render();
-    // private Pane uiFornecedor = new UIFornecedorFX().render();
+    private Pane uiFornecedor = new UIFornecedorFX().render();
+    private Pane uiFuncionario = new UIFuncionarioFX().render();
+    private Pane uiCliente = new UIClienteFX().render();
 
     // Menu
     private MenuBar menuBar = new MenuBar();
@@ -38,7 +39,9 @@ public class UIMainPageFX extends Application {
     private MenuItem mnuSairItem = new MenuItem("Sair");
 
     private MenuItem mnuMedicamentosItem = new MenuItem("Medicamentos");
-    // private MenuItem mnuFornecedoresItem = new MenuItem("Fornecedores");
+    private MenuItem mnuFornecedoresItem = new MenuItem("Fornecedores");
+    private MenuItem mnuFuncionarioItem = new MenuItem("Funcionarios");
+    private MenuItem mnuClientesItem = new MenuItem("Clientes");
 
     // Tela inicial
     private VBox layoutInicial = new VBox();
@@ -50,7 +53,9 @@ public class UIMainPageFX extends Application {
     );
 
     private Button btnMedicamento = new Button("Medicamentos");
-    // private Button btnFornecedor = new Button("Fornecedores");
+    private Button btnFornecedor = new Button("Fornecedores");
+    private Button btnFuncionario = new Button("Funcionarios");
+    private Button btnClientes = new Button("Clientes");
 
     @Override
     public void start(Stage primaryStage) {
@@ -59,7 +64,7 @@ public class UIMainPageFX extends Application {
 
         // Menu
         this.mnuArquivo.getItems().addAll(this.mnuInicialItem, this.mnuSairItem);
-        this.mnuGestao.getItems().addAll(this.mnuMedicamentosItem); 
+        this.mnuGestao.getItems().addAll(this.mnuMedicamentosItem, this.mnuFornecedoresItem, this.mnuFuncionarioItem, this.mnuClientesItem);
 
         this.menuBar.getMenus().addAll(this.mnuArquivo, this.mnuGestao, this.mnuAjuda);
         this.painelPrincipal.setTop(this.menuBar);
@@ -69,7 +74,7 @@ public class UIMainPageFX extends Application {
         this.lblDescricao.setStyle("-fx-font-size: 12px;");
 
         // Botões lado a lado
-        this.boxBotoes.getChildren().addAll(btnMedicamento);
+        this.boxBotoes.getChildren().addAll(btnMedicamento, btnFornecedor, btnFuncionario, btnClientes);
         this.boxBotoes.setSpacing(20);
         this.boxBotoes.setAlignment(Pos.CENTER);
 
@@ -106,17 +111,33 @@ public class UIMainPageFX extends Application {
             this.painelPrincipal.setCenter(this.uiMedicamento);
         });
 
-        // this.mnuFornecedoresItem.setOnAction(e -> {
-        //     this.painelPrincipal.setCenter(this.uiFornecedor);
-        // });
+        this.mnuFornecedoresItem.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiFornecedor);
+        });
 
-        // this.btnFornecedor.setOnAction(e -> {
-        //     this.painelPrincipal.setCenter(this.uiFornecedor);
-        // });
+        this.btnFornecedor.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiFornecedor);
+        });
+
+        this.mnuFuncionarioItem.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiFuncionario);
+        });
+
+        this.btnFuncionario.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiFuncionario);
+        });
+
+        this.mnuClientesItem.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiCliente);
+        });
+
+        this.btnClientes.setOnAction(e -> {
+            this.painelPrincipal.setCenter(this.uiCliente);
+        });
+
 
         primaryStage.setScene(scn);
         primaryStage.setTitle("Farmacia Popular");
         primaryStage.show();
     }
 }
-
