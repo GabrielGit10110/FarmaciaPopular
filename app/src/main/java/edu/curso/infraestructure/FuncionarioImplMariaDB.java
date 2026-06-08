@@ -1,4 +1,4 @@
-package java.edu.curso.infraestructure;
+package edu.curso.infraestructure;
 
 public class FuncionarioImplMariaDB {
 
