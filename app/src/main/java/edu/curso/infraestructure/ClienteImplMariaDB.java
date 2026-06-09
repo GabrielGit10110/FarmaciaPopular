@@ -179,7 +179,7 @@ public class ClienteImplMariaDB implements ClienteDAO {
     }
 
     @Override
-    public List<Cliente> searchByNome(String nome) {
+    public List<Cliente> searchByName(String nome) {
        List<Cliente> lista = new ArrayList<>();
 
         try {

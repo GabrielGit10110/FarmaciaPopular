@@ -11,7 +11,7 @@ public interface ClienteDAO {
     public void delete(Cliente c);
     public List<Cliente> findAll();
     public Cliente searchById(long id);
-    public List<Cliente> searchByNome(String nome);
+    public List<Cliente> searchByName(String nome);
     public Cliente searchByCpf(String cpf);
 
 }
