@@ -2,6 +2,7 @@ package edu.curso.model;
 
 import java.time.LocalDate;
 
+// Eae mermao ( ° u °)_b
 public class Cliente {
     private long id;
     private String nome;
