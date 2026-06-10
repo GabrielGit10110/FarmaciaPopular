@@ -11,6 +11,6 @@ public interface FuncionarioDAO {
     public List<Funcionario> findAll();
     public Funcionario findById(long id);
     public List<Funcionario> findByName(String nome);
-    public Funcionario findByCnpj(String registro);
+    public Funcionario findByRegistro(String registro);
 }
 //
