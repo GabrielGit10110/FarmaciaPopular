@@ -1,5 +1,7 @@
 package edu.curso.control;
 
+import java.util.List;
+
 import edu.curso.model.Medicamento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,11 +63,13 @@ public class MedicamentoController {
         return m;
     }
 
+    // copiar isso para outros CRUDS e mudar as variaveis (mensagem para o Gabes)
     private void validate(Medicamento m) {
         if (m.getNome() == null || m.getNome().isBlank()) {
             throw new RuntimeException("Nome nao pode ser vazio");
         }
 
+        // nao sei colocar acentos, entao os remedios nao tem acentos
         if (!m.getNome().matches("[a-zA-Z ]+")) {
             throw new RuntimeException("Nome nao pode conter numeros ou simbolos");
         }
