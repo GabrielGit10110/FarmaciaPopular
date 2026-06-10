@@ -24,7 +24,7 @@ public class MedicamentoImplMariaDB implements MedicamentoDAO {
             Class.forName("org.mariadb.jdbc.Driver");
             System.out.println("Driver carregado...");
             con = DriverManager.getConnection(DB_URI, DB_USER, DB_PASS);
-            System.out.println("Conectando ao banco de dados...");
+            System.out.println("Conectando ao banco de dados (Medicamento)...");
         } catch (ClassNotFoundException e) {
             System.out.println("Erro ao carregar o Driver...");
             e.printStackTrace();
