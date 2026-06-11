@@ -67,15 +67,6 @@ public class FuncionarioController {
             throw new RuntimeException("Nome nao pode conter numeros ou simbolos");
         }
 
-        if (fu.getRegistro() == null || fu.getRegistro().isBlank()) {
-            throw new RuntimeException("Registro nao pode ser vazio");
-        }
-
-        if (!fu.getRegistro().matches("\\d+")) {
-            System.out.println("Registro so pode conter numeros");
-            throw new RuntimeException("Registro so pode conter numeros");
-        }
-
          if (fu.getTelefone() == null || fu.getTelefone().isBlank()) {
             System.out.println("Telefone nao pode ser vazio");
             throw new RuntimeException("Telefone nao pode ser vazio");
@@ -89,6 +80,20 @@ public class FuncionarioController {
         if (!fu.getTelefone().matches("\\d+")) {
             System.out.println("Telefone so pode conter numeros");
             throw new RuntimeException("Telefone so pode conter numeros");
+        }
+
+        if (fu.getRegistro() == null || fu.getRegistro().isBlank()) {
+            throw new RuntimeException("Registro nao pode ser vazio");
+        }
+
+        if (fu.getRegistro() != null && fu.getRegistro().length() != 8) {
+            System.out.println("Numero do registro deve conter 8 digitos");
+            throw new RuntimeException("Numero de registro deve conter 8 digitos");
+        }
+
+        if (!fu.getRegistro().matches("\\d+")) {
+            System.out.println("Registro so pode conter numeros");
+            throw new RuntimeException("Registro so pode conter numeros");
         }
 
         if (fu.getEmail() == null || fu.getEmail().isBlank()) {
