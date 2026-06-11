@@ -46,11 +46,11 @@ gradle run
 ```
 
 # Divisão de Responsabilidades por Integrante:
-- Criação do CRUD com DAO e telas das entidades Medicamento e 
+- Criação do README e criação do CRUD com DAO e telas das entidades Medicamento e 
 Fornecedor:
 Gabriel de Oliveira Lima Silva
 
-- Criação do CRUD com DAO e telas das entidades Cliente e Funcionario:
+- Criação do vídeo e criação do CRUD com DAO e telas das entidades Cliente e Funcionario:
 Gabriel de Sousa Ordonho
 
 # Link Para o Vídeo no YouTube:
