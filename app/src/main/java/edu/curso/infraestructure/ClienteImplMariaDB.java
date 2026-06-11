@@ -38,7 +38,7 @@ public class ClienteImplMariaDB implements ClienteDAO {
     @Override
     public void save(Cliente c) {
         try {
-            String sql = "INSERT INTO cliente (nome, cpf, endereco, telefone, data_nascimento, r_popular) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO cliente (nome, cpf, endereco, telefone, data_nascimento, rPopular) VALUES (?, ?, ?, ?, ?, ?)";
 
             PreparedStatement stm = con.prepareStatement(sql);
             stm.setString(1, c.getNome());
@@ -60,7 +60,7 @@ public class ClienteImplMariaDB implements ClienteDAO {
     public void update(long id, Cliente c) {
          try {
 
-            String sql = "UPDATE cliente SET nome=?, cpf=?, endereco=?, telefone=?, data_nascimento=?, r_popular=?"+
+            String sql = "UPDATE cliente SET nome=?, cpf=?, endereco=?, telefone=?, data_nascimento=?, rPopular=?"+
                          "WHERE id = ? ";
     
             PreparedStatement stm = con.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class ClienteImplMariaDB implements ClienteDAO {
                 String endereco = rs.getString("endereco");
                 String telefone = rs.getString("telefone");
                 LocalDate dataNascimento = rs.getDate("data_nascimento").toLocalDate();
-                String rPopular = rs.getString("r_popular");
+                String rPopular = rs.getString("rPopular");
 
                 Cliente c = new Cliente(
                     id,
@@ -200,7 +200,7 @@ public class ClienteImplMariaDB implements ClienteDAO {
                 String endereco = rs.getString("endereco");
                 String telefone = rs.getString("telefone");
                 LocalDate dataNascimento = rs.getDate("data_nascimento").toLocalDate();
-                String rPopular = rs.getString("r_popular");
+                String rPopular = rs.getString("rPopular");
                 
                 c.setId(idCliente);
                 c.setNome(nomeCliente);
@@ -241,7 +241,7 @@ public class ClienteImplMariaDB implements ClienteDAO {
                 c.setEndereco(rs.getString("endereco"));
                 c.setTelefone(rs.getString("telefone"));
                 c.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
-                c.setRPopular(rs.getString("r_popular"));
+                c.setRPopular(rs.getString("rPopular"));
             }
 
         } catch (SQLException e) {
