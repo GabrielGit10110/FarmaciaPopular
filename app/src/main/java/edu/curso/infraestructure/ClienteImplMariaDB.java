@@ -158,8 +158,8 @@ public class ClienteImplMariaDB implements ClienteDAO {
                 String cpf = rs.getString("cpf");
                 String endereco = rs.getString("endereco");
                 String telefone = rs.getString("telefone");
-                LocalDate dataNascimento = rs.getDate("data_de_nascimento").toLocalDate();
-                String rPopular = rs.getString("registro_popular");
+                LocalDate dataNascimento = rs.getDate("data_nascimento").toLocalDate();
+                String rPopular = rs.getString("rPopular");
                 
                 c.setId(idCliente);
                 c.setNome(nome);
